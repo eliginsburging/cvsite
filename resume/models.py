@@ -33,6 +33,7 @@ class AcademicAwards(models.Model):
 class Quotation(models.Model):
 
     author = models.CharField(max_length=40)
+    author_desc = models.TextField()
     quotation_text = models.TextField()
 
     def __str__(self):
@@ -45,8 +46,8 @@ class Position(models.Model):
     employer = models.CharField(max_length=40)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
-    prior_title_one = models.CharField(max_length=40)
-    prior_title_two = models.CharField(max_length=40)
+    prior_title_one = models.CharField(max_length=40, null=True)
+    prior_title_two = models.CharField(max_length=40, null=True)
 
     def __str__(self):
         return f"{self.title} - {self.employer}"
@@ -75,6 +76,7 @@ class Interest(models.Model):
     interest_title = models.CharField(max_length=25)
     interest_description = models.TextField()
     img_file = models.CharField(max_length=40)
+    img_text = models.TextField(null=True)
 
     def __str__(self):
         return self.interest_title
@@ -82,5 +84,25 @@ class Interest(models.Model):
 
 class Ideal(models.Model):
 
-    ideal_title = models.CharField(max_lenth=40)
+    ideal_title = models.CharField(max_length=40)
     ideal_description = models.TextField()
+
+
+class Language(models.Model):
+
+    language = models.CharField(max_length=20)
+    proficiency = models.CharField(max_length=20)
+    current = models.BooleanField()
+    description = models.TextField()
+
+
+class Skill(models.Model):
+
+    skill = models.CharField(max_length=20)
+    skill_type = models.CharField(max_length=20)
+
+
+class SkillDetail(models.Model):
+
+    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
+    skill_detail = models.TextField()
