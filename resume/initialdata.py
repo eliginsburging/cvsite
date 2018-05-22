@@ -1,5 +1,77 @@
 from models import *
 
+Quotations = [
+    ["""C.V. Wedgwood""", """English historian, author of "The Thirty Years War,"
+     one of the best-written histories I have ever read""", """An educated man
+     should know everything about something and something about everything."""],
+    ["""Benjamin Franklin""", """A Founding Father of the United States""",
+     """An investment in knowledge pays the best interest"""],
+    ["""Albert Einstein""", """Father of Modern Physics""", """It is not so
+     very important for a person to learn facts. For that he does not really
+     need a college. He can learn them from books. The value of an education in
+     a liberal arts college is not the learning of many facts but the training
+     of the mind to think something that cannot be learned from textbooks."""],
+    ["""Seneca the Younger""", """Roman Stoic Philosopher""", """[People who
+     take time for philosophy] alone really live; for they are not content to
+     be good guardians of their own lifetime only. They annex every age to
+     their own; all the years that have gone before them are an addition to their
+     store. Unless we are most ungrateful, all those men, glorious fashioners
+     of holy thoughts, were born for us; for us they have prepared a way of
+     life. By other men's labours we are led to the sight of things most
+     beautiful that have been wrested from darkness and brought into light;
+     from no age are we shut out, we have access to all ages, and if it is
+     our wish, by greatness of mind, to pass beyond the narrow limits of
+     human weakness, there is a great stretch of time through which we
+     may roam."""],
+    ["""Henry David Thoreau""", """Trancsendentalist thinker and author""",
+     """Men sometimes speak as if the study of the classics would at length
+     make way for more modern and practical studies; but the adventurous
+     student will always study classics, in whatever language they may be
+     written and however ancient they may be. For what are the classics
+     but the noblest recorded thoughts of man? They are the only oracles
+     which are not decayed, and there are such answers to the most modern
+     inquiry in them as Delphi and Dodona never gave. We might as well omit
+     to study Nature because she is old."""],
+    ["""Leonardo da Vinci""", """Italian Renaissance polymath""",
+     """Iron rusts from disuse; stagnant water loses its purity
+      and in cold weather becomes frozen; even so does inaction sap
+      the vigor of the mind."""],
+    ["""Francis Bacon""", """English philsopher, scientist, and author""",
+     """There is no comparison between that which is lost by not succeeding and
+     that which is lost by not trying."""],
+    ["""Allen Ginsberg""", """American poet""", """My interest in reading is
+     the profit by other men's experiences. I sometimes find (only lately)
+     authors talking directly to me, from the bottom of their minds."""],
+    ["""Niels Bohr""", """A father of quantum mechanics""",
+     """We must be clear that when it comes to atoms, language can be used
+     only as in poetry. The poet, too, is not nearly so concerned with describing
+     facts as with creating images and establishing mental connections."""],
+    ["""John Dewey""", """American educational reformer""", """A possibility of
+     continuing progress is opened up by the fact that in learning one act,
+     methods are developed good for use in other situations. Still more
+     important is the fact that the human being acquires a habit of learning.
+     He learns to learn."""],
+    ["""Ruth Bader Ginsburg""", """U.S. Supreme Court Justice""", """I’m a very
+     strong believer in listening and learning from others"""],
+    ["""Maria Montessori""", """Italian educator and philosopher of education""",
+     """Education is a work of self-organization by which man adapts himself to
+     the conditions of life."""],
+    ["""Neil deGrasse Tyson""", """American Astrophysicist""", """It's the
+     inspired student that continues to learn on their own. That's what
+     separates the real achievers in the world from those who pedal along,
+     finishing assignments."""],
+    ["""Ada Lovelace""", """English mathematician and writer, the first
+     programmer""", """I am more determined than ever in my future plans; and I
+     have quite made up my mind that nothing must be suffered to interfere with
+     them. I intend to make such arrangements in town as will secure me a couple
+     hours daily (with very few exceptions) for my studies."""],
+]
+
+for quotation in Quotations:
+    temp = Quotation(quotation[0], quotation[1], quotation[2])
+    temp.save()
+
+
 Semesters = [
     ["Spring 2012", 3.95, True],
     ["Fall 2011", 4.0, True],
@@ -331,76 +403,93 @@ for sem in Semesters:
             temp2 = Course(temp, course[1], course[2], course[3])
             temp2.save()
 
-Quotations = [
-    ["""C.V. Wedgwood""", """English historian, author of "The Thirty Years War,"
-     one of the best-written histories I have ever read""", """An educated man
-     should know everything about something and something about everything."""],
-    ["""Benjamin Franklin""", """A Founding Father of the United States""",
-     """An investment in knowledge pays the best interest"""],
-    ["""Albert Einstein""", """Father of Modern Physics""", """It is not so
-     very important for a person to learn facts. For that he does not really
-     need a college. He can learn them from books. The value of an education in
-     a liberal arts college is not the learning of many facts but the training
-     of the mind to think something that cannot be learned from textbooks."""],
-    ["""Seneca the Younger""", """Roman Stoic Philosopher""", """[People who
-     take time for philosophy] alone really live; for they are not content to
-     be good guardians of their own lifetime only. They annex every age to
-     their own; all the years that have gone before them are an addition to their
-     store. Unless we are most ungrateful, all those men, glorious fashioners
-     of holy thoughts, were born for us; for us they have prepared a way of
-     life. By other men's labours we are led to the sight of things most
-     beautiful that have been wrested from darkness and brought into light;
-     from no age are we shut out, we have access to all ages, and if it is
-     our wish, by greatness of mind, to pass beyond the narrow limits of
-     human weakness, there is a great stretch of time through which we
-     may roam."""],
-    ["""Henry David Thoreau""", """Trancsendentalist thinker and author""",
-     """Men sometimes speak as if the study of the classics would at length
-     make way for more modern and practical studies; but the adventurous
-     student will always study classics, in whatever language they may be
-     written and however ancient they may be. For what are the classics
-     but the noblest recorded thoughts of man? They are the only oracles
-     which are not decayed, and there are such answers to the most modern
-     inquiry in them as Delphi and Dodona never gave. We might as well omit
-     to study Nature because she is old."""],
-    ["""Leonardo da Vinci""", """Italian Renaissance polymath""",
-     """Iron rusts from disuse; stagnant water loses its purity
-      and in cold weather becomes frozen; even so does inaction sap
-      the vigor of the mind."""],
-    ["""Francis Bacon""", """English philsopher, scientist, and author""",
-     """There is no comparison between that which is lost by not succeeding and
-     that which is lost by not trying."""],
-    ["""Allen Ginsberg""", """American poet""", """My interest in reading is
-     the profit by other men's experiences. I sometimes find (only lately)
-     authors talking directly to me, from the bottom of their minds."""],
-    ["""Niels Bohr""", """A father of quantum mechanics""",
-     """We must be clear that when it comes to atoms, language can be used
-     only as in poetry. The poet, too, is not nearly so concerned with describing
-     facts as with creating images and establishing mental connections."""],
-    ["""John Dewey""", """American educational reformer""", """A possibility of
-     continuing progress is opened up by the fact that in learning one act,
-     methods are developed good for use in other situations. Still more
-     important is the fact that the human being acquires a habit of learning.
-     He learns to learn."""],
-    ["""Ruth Bader Ginsburg""", """U.S. Supreme Court Justice""", """I’m a very
-     strong believer in listening and learning from others"""],
-    ["""Maria Montessori""", """Italian educator and philosopher of education""",
-     """Education is a work of self-organization by which man adapts himself to
-     the conditions of life."""],
-    ["""Neil deGrasse Tyson""", """American Astrophysicist""", """It's the
-     inspired student that continues to learn on their own. That's what
-     separates the real achievers in the world from those who pedal along,
-     finishing assignments."""],
-    ["""Ada Lovelace""", """English mathematician and writer, the first
-     programmer""", """I am more determined than ever in my future plans; and I
-     have quite made up my mind that nothing must be suffered to interfere with
-     them. I intend to make such arrangements in town as will secure me a couple
-     hours daily (with very few exceptions) for my studies."""],
+AcademicAwards = [
+    ["AP Scholar with Distinction", """In high school I took six AP classes,
+     scoring a four or higher on every exam I took. Below you see my AP
+     Transcript. My scores qualified me for the "AP Scholar with Distinction"
+     designation, which is awarded to anyone who scores a 3 or higher on five
+     exams and averages a 3.5 or higher on all exams taken."""],
+    ["Greek Student of the Year 2010 -2011", """In recognition of my devotion
+     to the study of Attic Greek, the Classical and Near Eastern Studies
+     Department at the University of Minnesota awarded me the designation
+     "Greek Student of the Year" for the fall and spring semesters of my junior
+     year of college. There was a small ceremony held in the department's
+     fireplace room, and I was presented with this certificate as well as a
+     recently published scholarly book about the archeology of Athens.""",
+     "greeksoy.jpg"],
+    ["University of Minnesota Dean's List Seven Consecutive Semesters, Graduation with Disction",
+     """During my undergraduate education, I made the Dean's List every
+     semester except my first. When I graduated, I did so "with distinction"
+     in acknowledgment of the fact that I had a cumulative GPA higher than
+     3.75. As a token of this accomplishment, I was allowed to wear a gold
+     neck tassel for my graduation ceremony. Here is a picture of my parents
+     and I on the day of my graduation.""", "graduationday.jpg"]
 ]
 
-for quotation in Quotations:
-    temp = Quotation(quotation[0], quotation[1], quotation[2])
+for award in AcademicAwards:
+    if len(award) > 2:
+        temp = AcademicAward(award[0], award[1], award[2])
+    else:
+        temp = AcademicAward(award[0], award[1])
     temp.save()
+
+APCourses = [
+    ["English Literature and Composition", "4"],
+    ["European History", "4"],
+    ["Calculus BC", "5 (AB)/5 (BC)"],
+    ["US History", "4"],
+    ["English Language and Composition", "4"],
+    ["Psychology", "5"]
+]
+
+for course in APCourses:
+    temp = APCourse(course[0], course[1])
+    temp.save()
+
+Languages = [
+    ["English", "Native", True],
+    ["Russian", "High Intermediate", True],
+    ["Spanish", "Intermediate", True],
+    ["German", "Intermediate", True],
+    ["Attic Greek", False],
+    ["Latin", False],
+    ["Turkish", False],
+    ["Japanese", False]
+]
+
+LanguageDetails = [
+    ["English", "Extensive vocabulary and firm grasp of English grammar"],
+    ["English", "Excellent written and verbal communication abilities"],
+    ["Russian", "Six semesters of study in college"],
+    ["Russian", "Ability to hold steady and wide-ranging conversations"],
+    ["Russian", "Ability to read Russian literature and news"],
+    ["Spanish", "Began studying in March of 2013 using Duolingo"],
+    ["Spanish", "Ability to read Spanish language literature and news"],
+    ["German", "Began studying in spring of 2014 using Duolingo and other resources"],
+    ["Attic Greek", "Four semesters of study in college"],
+    ["Attic Greek", "Achieved the ability to read unadapted intermediate Greek texts"],
+    ["Attic Greek", "Familiarity with the Greek roots of English"],
+    ["Latin", "Intensive independent study over the summer of 2011"],
+    ["Latin", "Basic familiarity with Latin grammar"],
+    ["Latin", "Familiarity with the Latin roots of English"],
+    ["Turkish", "Intermittent study over several years using Duoling and the Russian textbook Uchebnik Turetskogo Iazyka (Textbook of the Turkish Language)"],
+    ["Japanese", "Four years of study in high school"],
+    ["Japanese", "Achieved intermediate profeciency"],
+    ["Japanese", "Basic familiarity with Japanese grammar"],
+    ["Japanese", "Knowledge of some important phrases"]
+]
+
+for lang in Languages:
+    if len(lang) > 2:
+        temp = Language(lang[0], lang[1], lang[2])
+    else:
+        temp = Language(langauge=lang[0], current=lang[1])
+    temp.save()
+    for det in LanguageDetails:
+        if det[0] == lang[0]:
+            temp2 = LanguageDetail(temp, det[1])
+            temp2.save()
+
 
 Interests = [
     ["The Written Word", """Writing as a means of communication is unique in that it can
@@ -467,7 +556,6 @@ Interests = [
 for interest in Interests:
     if len(interest) > 3:
         temp = Interest(interest[0], interest[1], interest[2], interest[3])
-        temp.save()
     else:
         temp = Interest(interest[0], interest[1], interest[2])
-        temp.save()
+    temp.save()

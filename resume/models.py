@@ -1,6 +1,16 @@
 from django.db import models
 
 
+class Quotation(models.Model):
+
+    author = models.CharField(max_length=40)
+    author_desc = models.TextField()
+    quotation_text = models.TextField()
+
+    def __str__(self):
+        return self.author
+
+
 class Semester(models.Model):
     time_period = models.CharField(max_length=20)
     gpa = models.DecimalField(max_digits=3, decimal_places=2)
@@ -21,24 +31,34 @@ class Course(models.Model):
         return f"{self.CourseTitle} - {self.Grade}"
 
 
-class AcademicAwards(models.Model):
+class AcademicAward(models.Model):
 
     award_name = models.CharField(max_length=120)
     award_description = models.TextField()
+    img = models.CharField(max_length=40, null=True)
 
     def __str__(self):
         return self.award_name
 
 
-class Quotation(models.Model):
+class APCourse(models.Model):
 
-    author = models.CharField(max_length=40)
-    author_desc = models.TextField()
-    quotation_text = models.TextField()
+    course = models.CharField(max_length=50)
+    score = models.CharField(max_length=20)
 
-    def __str__(self):
-        return self.author
 
+class Language(models.Model):
+
+    language = models.CharField(max_length=20)
+    proficiency = models.CharField(max_length=20, null=True)
+    current = models.BooleanField()
+
+
+class LanguageDetail(models.Model):
+
+    language = models.ForeignKey('Language', on_delete=models.CASCADE)
+    detail = models.TextField()
+    
 
 class Position(models.Model):
 
@@ -86,14 +106,6 @@ class Ideal(models.Model):
 
     ideal_title = models.CharField(max_length=40)
     ideal_description = models.TextField()
-
-
-class Language(models.Model):
-
-    language = models.CharField(max_length=20)
-    proficiency = models.CharField(max_length=20)
-    current = models.BooleanField()
-    description = models.TextField()
 
 
 class Skill(models.Model):
