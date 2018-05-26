@@ -58,7 +58,7 @@ class LanguageDetail(models.Model):
 
     language = models.ForeignKey('Language', on_delete=models.CASCADE)
     detail = models.TextField()
-    
+
 
 class Position(models.Model):
 
@@ -66,11 +66,16 @@ class Position(models.Model):
     employer = models.CharField(max_length=40)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
-    prior_title_one = models.CharField(max_length=40, null=True)
-    prior_title_two = models.CharField(max_length=40, null=True)
 
     def __str__(self):
         return f"{self.title} - {self.employer}"
+
+
+class PriorTitle(models.Model):
+
+    current_position = models.ForeignKey('Position', on_delete=models.CASCADE)
+    prior_title = models.CharFied(max_length=50)
+    promotion_date = models.DateField()
 
 
 class Duty(models.Model):

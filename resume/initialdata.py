@@ -1,4 +1,5 @@
 from models import *
+from datetime import date
 
 Quotations = [
     ["""C.V. Wedgwood""", """English historian, author of "The Thirty Years War,"
@@ -490,6 +491,77 @@ for lang in Languages:
             temp2 = LanguageDetail(temp, det[1])
             temp2.save()
 
+
+ComputerSkills = [
+    ["Windows", "Computer"],
+    ["Linux", "Computer"],
+    ["Web Design", "Computer"],
+    ["Computer Science", "Computer"]
+]
+
+ComputerSkillDetails = [
+    ["Windows", "Knowledge of the MS Office Suite, especially Word and Excel"],
+    ["Linux", "Comfort at the command line"],
+    ["Linux", """Familiarity with multiple Linux distributions, including
+     Debian, Debian derivatives (Linux Mint and Ubuntu), OpenSuse, and Arch
+     derivatives (Manjaro, Antergos)"""],
+    ["Web Design", "Django"],
+    ["Web Design", "Bootstrap"],
+    ["Web Design", "Javascript, including familiarity with Vue.JS"],
+    ["Computer Science", """Knowledge of the essential abstract tools used in
+     all programming languages"""],
+    ["Computer Science", "Intermediate Python"]
+]
+
+for someskill in ComputerSkills:
+    temp = Skill(someskill[0], someskill[1])
+    temp.save()
+    for detail in ComputerSkillDetails:
+        if someskill[0] == detail[0]:
+            temp2 = SkillDetail(temp, detail[1])
+            temp2.save()
+
+Jobs = [
+    ["Assistant Paralegal",
+     "Fragomen, Del Rey, Bernsen & Loewy, LLP",
+     date(2015, 2, 1)],
+    ["Staff Tutor",
+     "Project: VISION",
+     date(2013, 9, 1),
+     date(2015, 2, 1)],
+    ["Recess Supervisor",
+     "Strech-n-Grow North, Inc.",
+     date(2013, 10, 1),
+     date(2014, 6, 1)],
+    ["Tutor",
+     "Somali American Parent Association",
+     date(2012, 10, 1),
+     date(2013, 4, 1)],
+    ["Barista",
+     "Publika Cafe",
+     date(2012, 10, 1),
+     date(2013, 3, 1)]¸
+    ["Lead Worker",
+     "O. Meredith Wilson Library, University of Minnesota",
+     date(2010, 6, 1),
+     date(2012, 8, 1)],
+    ["Pathology Research Assistant",
+     "University of Chicago Hospitals",
+     date(2009, 6, 1),
+     date(2009, 8, 1)]
+]
+
+PriorTitles = [
+    ["Assistant Paralegal",
+     "Administrative Assistant",
+     date(2016, 1, 1)],
+    ["Recess Supervisor",
+     "Recess Coach",
+     date(2014, 3, 1)],
+    ["Lead Worker",
+     "Student Library Assistant",
+     date(2011, 6, 1)]
+]
 
 Interests = [
     ["The Written Word", """Writing as a means of communication is unique in that it can
