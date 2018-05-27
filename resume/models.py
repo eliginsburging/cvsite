@@ -1,5 +1,15 @@
 from django.db import models
 
+tag_choices = (
+    ("Critical Thinking", "Critical Thinking"),
+    ("Writing", "Writing"),
+    ("Time and Project Management", "Time and Project Management"),
+    ("Client Service", "Client Service"),
+    ("Teaching", "Teaching"),
+    ("Administrative", "Administrative"),
+    ("Supervisory", "Supervisory")
+)
+
 
 class Quotation(models.Model):
 
@@ -82,6 +92,7 @@ class Duty(models.Model):
 
     job = models.ForeignKey('Position', on_delete=models.CASCADE)
     job_duty = models.TextField()
+    prior = models.BooleanField()
 
     def __str__(self):
         return f"{self.job.title} - {self.job_duty}"
@@ -90,10 +101,23 @@ class Duty(models.Model):
 class DutyTag(models.Model):
 
     duty = models.ManyToManyField(Duty)
-    duty_tag = models.CharField(max_length=20)
+    duty_tag = models.CharField(max_length=30, choices=tag_choices)
 
     def __str__(self):
         return f"{self.duty.job_duty} - {self.duty_tag}"
+
+
+class Project(models.Model):
+
+    job = models.ForeignKey("Position", on_delete=models.CASCADE)
+    project_name = models.CharField(max_length=50)
+    project_description = models.TextField()
+
+
+class ProjectTag(models.Model):
+
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+    project_tag = models.CharField(max_length=30, choices=tag_choices)
 
 
 class Interest(models.Model):

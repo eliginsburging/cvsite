@@ -563,6 +563,154 @@ PriorTitles = [
      date(2011, 6, 1)]
 ]
 
+Duties = [
+    ["Assistant Paralegal",
+     """Drafting complex responses to government requests for
+     additional evidence on immigration petitions""",
+     False,
+     ["Writing"]],
+    ["Assistant Paralegal",
+     "Managing numerous competing deadlines for various immigration matters",
+     False,
+     ["Time and Project Management"]],
+    ["Assistant Paralegal",
+     """Leading the preparation of high touch immigration cases
+     requiring close coordination with client management""",
+     False,
+     ["Critical Thinking", "Client Service"]
+     ],
+    ["Assistant Paralegal",
+     """Communicating with clients via email and phone to inform them of
+     pressing issues in immigration""",
+     False,
+     ["Client Service", "Writing"]],
+    ["Assistant Paralegal",
+     """Developing standardized approaches to complex immigration case types
+     and team infrastructure (such as template letters and emails) to
+     facilitate the preparation of such cases""",
+     False,
+     ["Writing", "Critical Thinking"]],
+    ["Assistant Paralegal",
+     """Training and advising coworkers on various immigration case
+     types/clients""",
+     False,
+     ["Teaching"]],
+    ["Assistant Paralegal",
+     """Photocopying and scanning visa petitions to prepare them for filing
+     with United States Citizenship and Immigration Services""",
+     True,
+     ["Administrative"]],
+    ["Assistant Paralegal",
+     """Processing questionnaires from foreign nationals who wish to apply for
+     or extend immigrant or nonimmigrant status""",
+     True,
+     ["Administrative"]],
+    ["Assistant Paralegal",
+     """Filling out expense reports for attorneys""",
+     True,
+     ["Administrative"]],
+    ["Staff Tutor",
+     """I tutored three to five students daily in grades six through twelve in
+     all subjects""",
+     False,
+     ["Teaching"]],
+    ["Staff Tutor",
+     """I prepared academic enrichment activities for students who finished
+     their homework early""",
+     False,
+     ["Teaching", "Writing"]],
+    ["Staff Tutor",
+     "I attended tutor trainings and workshops",
+     False],
+    ["Staff Tutor",
+     """I taught the English and Mathematics sections of an ACT preparation
+     class""",
+     False,
+     ["Teaching"]],
+    ["Staff Tutor",
+     """I ran a "Freshman Camp" for students about to begin their freshman year
+     of high school""",
+     False,
+     ["Teaching"]],
+    ["Staff Tutor",
+     """I facilitated the "Teen Advisory Panel," which sought to engage
+     teenages on community issues in Chicago's Chinatown""",
+     False],
+    ["Staff Tutor",
+     """I entered and analyzed student attendance data""",
+     False,
+     ["Administrative"]],
+    ["Staff Tutor",
+     """I wrote and edited letters of inquiry to grantmakers""",
+     False,
+     ["writing"]]
+]
+
+Projects = [
+    ["Assistant Paralegal",
+     """Prepared an L-1 Blanket Amendment petition and numerous L-1 Blanket
+     visas on an expedited basis""",
+     """When one of our clients purchased an Italian-owned company without
+     realizing the impact to the 12 or so E-2 visa holders then working for
+     that company in the U.S., I handled the expedited L-1 blanket amendment
+     petition preparation that would allow the client to prepare L-1 blanket
+     petitions on behalf of the affected employees. The client in question has
+     a reputation for its somewhat opaque internal corporate relationships, but
+     I worked with them to obtain the necessary documentation to evidence the
+     corporate relationships not only of the new Italian subsidiary, but also
+     of multiple previous acquisitions which had not yet been added to the
+     company's L-1 Blanket. The L-1 Blanket amendment petition I expeditiously
+     prepared was quickly approved. While preparing the L-1 blanket amendment
+     petition, I also carried out the eligibility analysis for the employees of
+     the Italian subsidiary who had previously held E-2 status, and who were
+     understandably somewhat concerned about the sudden invalidation of their
+     visas. I understood not only the concern of the employees, but also the
+     client's desire to have the situation resolved as soon as possible, and
+     I prepared the cases on an expedited basis. All of the cases I prepared
+     were approved in a timely manner.""",
+     ["Writing", "Client Service", "Critical Thinking"]
+     ],
+    ["Assistant Paralegal",
+     "Prepared multiple O-1 visa petitions for senior executives",
+     """When one of our bigger clients decided to hire first one and then
+     a second digital marketing executive, I handled the preparation of the
+     O-1 petitions. Because these individuals were being offered positions at
+     Vice President- and Senior Director-level, respectively, both cases
+     attracted the attention of senior leadership at the client company. Under
+     this increased scrutiny, I prepared case roadmaps, gathered supporting
+     documentation, drafted expert testimonial letters, answered client
+     questions, managed expectations, and prepared the O-1 petitions, including
+     lengthy (around 30 page) company letters of support. Both petitions were
+     approved without issuance of requests for additional evidence."""]
+]
+
+for job in Jobs:
+    if len(job) <= 3:
+        temp = Position(title=job[0], employer=job[1], start_date=job[2])
+    else:
+        temp = Position(job[0], job[1], job[2], job[3])
+    temp.save()
+    for oldtitle in PriorTitles:
+        if oldtitle[0] == job[0]:
+            temp2 = PriorTitle(temp, oldtitle[1], oldtitle[2])
+            temp2.save()
+    for duty in Duties:
+        if duty[0] == job[0]:
+            temp3 = Duty(temp, duty[1], duty[2])
+            temp3.save()
+            if len(duty) > 3:
+                for tag in duty[3]:
+                    temp4 = DutyTag(temp3, tag)
+                    temp4.save()
+    for proj in Projects:
+        if proj[0] == job[0]:
+            temp5 = Project(proj[1], proj[2])
+            temp5.save()
+            if len(proj) > 3:
+                for tag in proj[3]:
+                    temp6 = ProjectTag(temp5, tag)
+                    temp6.save()
+
 Interests = [
     ["The Written Word", """Writing as a means of communication is unique in that it can
      equally express both the rational/cerebral and the intuitive/emotional
