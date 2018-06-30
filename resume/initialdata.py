@@ -1,3 +1,9 @@
+import django
+from django.conf import settings
+settings.configure()
+django.setup()
+django.configure()
+
 from models import *
 from datetime import date
 
@@ -540,7 +546,7 @@ Jobs = [
     ["Barista",
      "Publika Cafe",
      date(2012, 10, 1),
-     date(2013, 3, 1)]¸
+     date(2013, 3, 1)],
     ["Lead Worker",
      "O. Meredith Wilson Library, University of Minnesota",
      date(2010, 6, 1),
@@ -778,4 +784,48 @@ for interest in Interests:
         temp = Interest(interest[0], interest[1], interest[2], interest[3])
     else:
         temp = Interest(interest[0], interest[1], interest[2])
+    temp.save()
+
+ideals = [
+    ["The Importance of Education", """This idea has its roots in the very
+     bedrock of my personal identity. My parents made it the constant
+     refrain of my upbringing. I cherish their ideal as my own and with an
+     equal fervor. I view my college degree more as having equipped me with
+     the tools to pursue self-education than as having prepared me for any
+     specific job, and I have made the broadening of my education my daily
+     task since I've graduated."""],
+    ["The Value of the Liberal Arts", """When I selected Classical
+     Civilizations as my major in college, I made a decision to invest in a
+     broad education that emphasized thinking. I made the investment knowing
+     full well what the Liberal Arts offer a dedicated student: a wide-ranging
+     ability to solve problems, excellence in written and verbal communication,
+     and, most importantly, the ability to learn. I made that choice because I
+     truly believe in the value of the Liberal Arts in making strong, capable
+     citizens, thinkers, and workers."""],
+    ["Honesty and Accountability", """I view honesty and accountability as the
+     foundation of good relationships, both personal and professional. Without
+     honest communication, there can be no effective collaboration, which is so
+     key in our ever-increasingly interconnected world. Without accountability
+     there can be no constructive efforts to deal with mistakes. I try to cultivate
+     these characteristics in myself, and I also look for them in others when I am
+     forming relationships."""],
+    ["Open-Mindedness", """I consider some flexibility in ideas to be another
+     fundamental component of cooperation. Keeping an open mind fosters
+     creativity in problem solving. Moreover, it helps disarm the personal
+     attachment to ideas which is so often at the root of personal conflict. It
+     is all too easy to mistake criticism of an idea for a personal attack,
+     and open-mindedness helps prevent such misunderstandings."""],
+    ["Cooperation and Proactive Engagement", """Cooperation is at the heart of
+     any successful effort. We are capable of achieving much more when we work
+     together effectively than we can as individuals. By proactive engagement,
+     I mean mindful, continual engagement with coworkers to address any issues
+     that might reduce the effectiveness of collaboration. I might liken
+     proactive engagement to cleaning a house. If the cleaning is done
+     regularly, it is a task which requires some attention, but is not
+     overwhelming. But if the cleaning is neglected for a long period, it
+     becomes a substantial, potentially very stressful task."""]
+]
+
+for ideal in ideals:
+    temp = Ideal(ideal[0], ideal[1])
     temp.save()

@@ -84,7 +84,7 @@ class Position(models.Model):
 class PriorTitle(models.Model):
 
     current_position = models.ForeignKey('Position', on_delete=models.CASCADE)
-    prior_title = models.CharFied(max_length=50)
+    prior_title = models.CharField(max_length=50)
     promotion_date = models.DateField()
 
 
