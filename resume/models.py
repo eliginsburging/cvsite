@@ -70,6 +70,18 @@ class LanguageDetail(models.Model):
     detail = models.TextField()
 
 
+class Skill(models.Model):
+
+    skill = models.CharField(max_length=20)
+    skill_type = models.CharField(max_length=20)
+
+
+class SkillDetail(models.Model):
+
+    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
+    skill_detail = models.TextField()
+
+
 class Position(models.Model):
 
     title = models.CharField(max_length=40)
@@ -135,15 +147,3 @@ class Ideal(models.Model):
 
     ideal_title = models.CharField(max_length=40)
     ideal_description = models.TextField()
-
-
-class Skill(models.Model):
-
-    skill = models.CharField(max_length=20)
-    skill_type = models.CharField(max_length=20)
-
-
-class SkillDetail(models.Model):
-
-    skill = models.ForeignKey('Skill', on_delete=models.CASCADE)
-    skill_detail = models.TextField()
