@@ -713,8 +713,9 @@ def load_data(apps, schema_editor):
                 temp3.save()
                 if len(duty) > 3:
                     for tag in duty[3]:
-                        temp3.DutyTag.add(tag)
-                        temp3.save()
+                        temp4 = DutyTag(duty_tag=tag)
+                        temp4.duty.add(temp3)
+                        temp4.save()
         for proj in Projects:
             if proj[0] == job[0]:
                 temp5 = Project(job=temp, project_name=proj[1],
@@ -722,8 +723,9 @@ def load_data(apps, schema_editor):
                 temp5.save()
                 if len(proj) > 3:
                     for tag in proj[3]:
-                        temp5.ProjectTag.add(tag)
-                        temp5.save()
+                        temp6 = ProjectTag(project_tag=tag)
+                        temp6.project.add(temp5)
+                        temp6.save()
 
     Interests = [
         ["The Written Word", """Writing as a means of communication is unique in that it can
