@@ -494,7 +494,7 @@ def load_data(apps, schema_editor):
         if len(lang) > 2:
             temp = Language(language=lang[0], proficiency=lang[1], current=lang[2])
         else:
-            temp = Language(langauge=lang[0], current=lang[1])
+            temp = Language(language=lang[0], current=lang[1])
         temp.save()
         for det in LanguageDetails:
             if det[0] == lang[0]:
@@ -713,8 +713,8 @@ def load_data(apps, schema_editor):
                 temp3.save()
                 if len(duty) > 3:
                     for tag in duty[3]:
-                        temp4 = DutyTag(duty=temp3, duty_tag=tag)
-                        temp4.save()
+                        temp3.DutyTag.add(tag)
+                        temp3.save()
         for proj in Projects:
             if proj[0] == job[0]:
                 temp5 = Project(job=temp, project_name=proj[1],
@@ -722,8 +722,8 @@ def load_data(apps, schema_editor):
                 temp5.save()
                 if len(proj) > 3:
                     for tag in proj[3]:
-                        temp6 = ProjectTag(project=temp5, project_tag=tag)
-                        temp6.save()
+                        temp5.ProjectTag.add(tag)
+                        temp5.save()
 
     Interests = [
         ["The Written Word", """Writing as a means of communication is unique in that it can

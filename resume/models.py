@@ -128,7 +128,7 @@ class Project(models.Model):
 
 class ProjectTag(models.Model):
 
-    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+    project = models.ManyToManyField("Project")
     project_tag = models.CharField(max_length=30, choices=tag_choices)
 
 
