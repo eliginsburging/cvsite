@@ -100,7 +100,6 @@ def load_data(apps, schema_editor):
                          quotation_text=quotation[2])
         temp.save()
 
-
     Semesters = [
         ["Spring 2012", 3.95, True],
         ["Fall 2011", 4.0, True],
@@ -118,13 +117,14 @@ def load_data(apps, schema_editor):
          "A",
          ("This class covered the history of art in India from its distant "
           "past to the present. Like the other art history class I took, it "
-          "was quite challenging. The test format was almost the same: we were "
-          "randomly shown a number of slides from a very large pool, and we "
-          "had to try to identify the date, the location, the artist (if known)"
-          ", and how the piece fit into the larger context of the history of "
-          "art in that location. I particularly enjoyed looking at Indian "
-          "temple architecture, and the course hammered home the relationship "
-          "between art history and political/religious history in India.")],
+          "was quite challenging. The test format was almost the same: we were"
+          " randomly shown a number of slides from a very large pool, and we "
+          "had to try to identify the date, the location, the artist (if "
+          "known), and how the piece fit into the larger context of the "
+          "history of art in that location. I particularly enjoyed looking at"
+          " Indian temple architecture, and the course hammered home the "
+          " relationshipbetween art history and political/religious history in"
+          "India.")],
         ["Spring 2012",
          "CNES 3107 - Age of Constantine the Great",
          "A-",
@@ -469,7 +469,7 @@ def load_data(apps, schema_editor):
          "A-",
          ("At this early stage in my study of Russian, I still had little "
           "concept of what I had gotten into, but I was enjoying it. The "
-          "textbook we were using, \"Начало\" (\"Beginning\"), provided small
+          "textbook we were using, \"Начало\" (\"Beginning\"), provided small "
           "insights into Russian culture: there was a section on New Year's "
           "celebrations (New Years is the Russian Christmas); a section on "
           "how to decline alcohol; a cast of characters that included a local "
@@ -525,8 +525,8 @@ def load_data(apps, schema_editor):
          "RUSS 1101 - Beginning Russian I",
          "A-",
          ("I took this class because I had read some Dostoevsky and Tolstoy "
-          "in my spare time in high school, and I had thoroughly enjoyed both. "
-          "As I began to study the language, I fell in love with its "
+          "in my spare time in high school, and I had thoroughly enjoyed both."
+          " As I began to study the language, I fell in love with its "
           "strangeness, its near-perversity. I had yet to realize the "
           "importance of stress or the complexity of the Russian verb-system"
           "(don't get me started on verbs of motion). But the passion "
@@ -557,7 +557,7 @@ def load_data(apps, schema_editor):
           "There was a small ceremony held in the department's fireplace "
           "room, and I was presented with this certificate as well as a "
           "recently published scholarly book about the archeology of Athens."),
-          "greeksoy.jpg"],
+         "greeksoy.jpg"],
         [("University of Minnesota Dean's List Seven Consecutive Semesters, "
           "Graduation with Disction"),
          ("During my undergraduate education, I made the Dean's List every "
@@ -567,7 +567,7 @@ def load_data(apps, schema_editor):
           "accomplishment, I was allowed to wear a gold neck tassel for my "
           "graduation ceremony. Here is a picture of my parents and I on "
           "the day of my graduation."),
-          "graduationday.jpg"]
+         "graduationday.jpg"]
     ]
 
     for award in AcademicAwards:
@@ -632,7 +632,9 @@ def load_data(apps, schema_editor):
 
     for lang in Languages:
         if len(lang) > 2:
-            temp = Language(language=lang[0], proficiency=lang[1], current=lang[2])
+            temp = Language(language=lang[0],
+                            proficiency=lang[1],
+                            current=lang[2])
         else:
             temp = Language(language=lang[0], current=lang[1])
         temp.save()
@@ -640,7 +642,6 @@ def load_data(apps, schema_editor):
             if det[0] == lang[0]:
                 temp2 = LanguageDetail(language=temp, detail=det[1])
                 temp2.save()
-
 
     ComputerSkills = [
         ["Windows", "Computer"],
@@ -650,7 +651,8 @@ def load_data(apps, schema_editor):
     ]
 
     ComputerSkillDetails = [
-        ["Windows", "Knowledge of the MS Office Suite, especially Word and Excel"],
+        ["Windows",
+         "Knowledge of the MS Office Suite, especially Word and Excel"],
         ["Linux", "Comfort at the command line"],
         ["Linux", ("Familiarity with multiple Linux distributions, including "
                    "Debian, Debian derivatives (Linux Mint and Ubuntu), "
@@ -739,49 +741,50 @@ def load_data(apps, schema_editor):
          ["Time and Project Management", "Writing", "Critical Thinking",
           "Client Service"]],
         ["Paralegal",
-         ("Provide training and guidance regarding case types within my domain."),
+         ("Provide training and guidance regarding case types within my"
+          " domain."),
          False,
          ["Teaching"]],
         ["Paralegal",
-         """Photocopying and scanning visa petitions to prepare them for filing
-         with United States Citizenship and Immigration Services""",
+         ("Photocopying and scanning visa petitions to prepare them for filing"
+          "with United States Citizenship and Immigration Services"),
          True,
          ["Administrative"]],
         ["Paralegal",
-         """Processing questionnaires from foreign nationals who wish to apply for
-         or extend immigrant or nonimmigrant status""",
+         ("Processing questionnaires from foreign nationals who wish to apply"
+          " for or extend immigrant or nonimmigrant status"),
          True,
          ["Administrative"]],
-         ["Paralegal",
+        ["Paralegal",
          """Filling out expense reports for attorneys""",
          True,
          ["Administrative"]],
         ["Staff Tutor",
-         """I tutored three to five students daily in grades six through twelve in
-         all subjects""",
+         ("I tutored three to five students daily in grades six through twelve"
+          " in all subjects"),
          False,
          ["Teaching"]],
         ["Staff Tutor",
-         """I prepared academic enrichment activities for students who finished
-         their homework early""",
+         ("I prepared academic enrichment activities for students who finished"
+          " their homework early"),
          False,
          ["Teaching", "Writing"]],
         ["Staff Tutor",
          "I attended tutor trainings and workshops",
          False],
         ["Staff Tutor",
-         """I taught the English and Mathematics sections of an ACT preparation
-         class""",
+         ("I taught the English and Mathematics sections of an ACT preparation"
+          " class"),
          False,
          ["Teaching"]],
         ["Staff Tutor",
-         """I ran a "Freshman Camp" for students about to begin their freshman year
-         of high school""",
+         ("I ran a \"Freshman Camp\" for students about to begin their "
+          "freshman year of high school"),
          False,
          ["Teaching"]],
         ["Staff Tutor",
-         """I facilitated the "Teen Advisory Panel," which sought to engage
-         teenages on community issues in Chicago's Chinatown""",
+         ("I facilitated the \"Teen Advisory Panel,\" which sought to engage "
+          "teenagers on community issues in Chicago's Chinatown"),
          False],
         ["Staff Tutor",
          """I entered and analyzed student attendance data""",
@@ -804,8 +807,8 @@ def load_data(apps, schema_editor):
           "prepare L-1 blanket petitions on behalf of the affected employees. "
           "The client in question has a reputation for its somewhat opaque "
           "internal corporate relationships, but I worked with them to obtain "
-          "the necessary documentation to evidence the corporate relationships "
-          "not only of the new Italian subsidiary, but also of multiple "
+          "the necessary documentation to evidence the corporate relationships"
+          " not only of the new Italian subsidiary, but also of multiple "
           "previous acquisitions which had not yet been added to the company's"
           " L-1 Blanket. The L-1 Blanket amendment petition I expeditiously "
           "prepared was quickly approved. While preparing the L-1 blanket "
@@ -822,16 +825,16 @@ def load_data(apps, schema_editor):
         ["Paralegal",
          "Prepared multiple O-1 visa petitions for senior executives",
          ("When one of our bigger clients decided to hire first one and then"
-         "a second digital marketing executive, I handled the preparation of "
-         "the O-1 petitions. Because these individuals were being offered "
-         "positions at Vice President- and Senior Director-level, "
-         "respectively, both cases attracted the attention of senior "
-         "leadership at the client company. Under this increased scrutiny, I "
-         "prepared case roadmaps, gathered supporting documentation, drafted "
-         "expert testimonial letters, answered client questions, managed "
-         "expectations, and prepared the O-1 petitions, including lengthy "
-         "(around 30 page) company letters of support. Both petitions were "
-         "approved without issuance of requests for additional evidence.")]
+          "a second digital marketing executive, I handled the preparation of "
+          "the O-1 petitions. Because these individuals were being offered "
+          "positions at Vice President- and Senior Director-level, "
+          "respectively, both cases attracted the attention of senior "
+          "leadership at the client company. Under this increased scrutiny, I "
+          "prepared case roadmaps, gathered supporting documentation, drafted "
+          "expert testimonial letters, answered client questions, managed "
+          "expectations, and prepared the O-1 petitions, including lengthy "
+          "(around 30 page) company letters of support. Both petitions were "
+          "approved without issuance of requests for additional evidence.")]
     ]
 
     for job in Jobs:
@@ -890,59 +893,59 @@ def load_data(apps, schema_editor):
           "time in any given place has developed over centuries, it contains "
           "intimations of the cultural history and ideology of the people "
           "who speak it. By studying language, it is possible to access these "
-          "underlying currents of thought and experience in a sort of indirect
-          "way."),
-          "language.png",
-          ("These are the opening lines of the Iliad, a text which marked the "
+          "underlying currents of thought and experience in a sort of indirect"
+          " way."),
+         "language.png",
+         ("These are the opening lines of the Iliad, a text which marked the "
           "beginning of European literary culture. I had the pleasure of "
-          "reading selections of the Iliad in the original for my 4th semester "
-          "of Greek in college.")],
+          "reading selections of the Iliad in the original for my 4th semester"
+          " of Greek in college.")],
         ["Art",
-        ("Art for art's sake is a fundamental principle in my life. I have "
-         "found no better therapy for the \"thousand natural shocks that "
-         "flesh is heir to\" than the creation of something artistic simply "
-         "for its own sake. Art is a meditation and a catharsis. It is a "
-         "transcendent mode of communication that operates on a level beyond "
-         "our practical concerns, our instincts for survival. Good art "
-         "touches the very foundations of what it means to be a human being, "
-         "to feel these desires and these frustrations, to struggle daily "
-         "against the insurmountable, to revel in the ephemeral beauty of "
-         "our existence. Art is an explanation beyond words even when it "
-         "uses words, an ascription of meaning beyond the constraints of the "
-         "pragmatic mind, for it operates in the unbounded realm of the "
-         "imagination. Art is life."),
+         ("Art for art's sake is a fundamental principle in my life. I have "
+          "found no better therapy for the \"thousand natural shocks that "
+          "flesh is heir to\" than the creation of something artistic simply "
+          "for its own sake. Art is a meditation and a catharsis. It is a "
+          "transcendent mode of communication that operates on a level beyond "
+          "our practical concerns, our instincts for survival. Good art "
+          "touches the very foundations of what it means to be a human being, "
+          "to feel these desires and these frustrations, to struggle daily "
+          "against the insurmountable, to revel in the ephemeral beauty of "
+          "our existence. Art is an explanation beyond words even when it "
+          "uses words, an ascription of meaning beyond the constraints of the "
+          "pragmatic mind, for it operates in the unbounded realm of the "
+          "imagination. Art is life."),
          "art.png",
          "A sketch I drew of the great American folk singer Woody Guthrie"],
         ["Science and Technology",
-        ("Under this broad heading I would include cosmology, astronomy, "
-         "astrophysics, physics, engineering, chemistry, biology, physiology, "
-         "psychology, mathematics, computer science, and web design. Science "
-         "represents a fundamental part of my world view. It is an established "
-         "and carefully regulated means for evaluating the world around us in "
-         "a standardized and verifiable manner, and it produces results that "
-         "are useful in terms of predicting events, explaining the past, and "
-         "designing products and tools to take advantage of the nature of the "
-         "universe."),
+         ("Under this broad heading I would include cosmology, astronomy, "
+          "astrophysics, physics, engineering, chemistry, biology, physiology,"
+          " psychology, mathematics, computer science, and web design. "
+          "Science represents a fundamental part of my world view. It is an"
+          " established and carefully regulated means for evaluating the world"
+          " around us in a standardized and verifiable manner, and it produces"
+          " results that are useful in terms of predicting events, explaining"
+          " the past, and designing products and tools to take advantage of"
+          " the nature of the universe."),
          "science.png",
          ("This image is derived from an image in the public domain by Geek3. "
-         "For more information visit "
-         "https://commons.wikimedia.org/wiki/File:VFPt_Solenoid_correct2.svg")],
+          "For more information visit "
+          "https://commons.wikimedia.org/wiki/File:VFPt_Solenoid_correct2.svg")],
         ["Thought",
-        ("By \"thought\" I mean systems of ideas, frameworks for interpreting "
-         "the world. Our minds, having been shaped by the pragmatic hand of "
-         "evolution, are incapable of processing the totality of the world "
-         "around us, and they consequently operate by making groupings, "
-         "reductions, approximations, eliminations. The integral of these "
-         "simplifications is what might be called a world view. World views "
-         "are the result of the complex interfacing of the individual and "
-         "society. I like to learn about these interpretive frameworks both "
-         "on the individual and the societal level, especially through the "
-         "study of world religion, mythology, ethnography, and philosophy."),
+         ("By \"thought\" I mean systems of ideas, frameworks for interpreting"
+          " the world. Our minds, having been shaped by the pragmatic hand of "
+          "evolution, are incapable of processing the totality of the world "
+          "around us, and they consequently operate by making groupings, "
+          "reductions, approximations, eliminations. The integral of these "
+          "simplifications is what might be called a world view. World views "
+          "are the result of the complex interfacing of the individual and "
+          "society. I like to learn about these interpretive frameworks both "
+          "on the individual and the societal level, especially through the "
+          "study of world religion, mythology, ethnography, and philosophy."),
          "thought.jpg",
          ("This image of a statue of the Scottish philosopher David Hume "
-         "is derived from an image in the public domain by Bandan. For more "
-         "information visit "
-         "https://commons.wikimedia.org/wiki/File:DavidHume.jpg")],
+          "is derived from an image in the public domain by Bandan. For more "
+          "information visit "
+          "https://commons.wikimedia.org/wiki/File:DavidHume.jpg")],
     ]
 
     for interest in Interests:
@@ -959,48 +962,48 @@ def load_data(apps, schema_editor):
 
     ideals = [
         ["The Importance of Education",
-        ("This idea has its roots in the very bedrock of my personal identity. "
-         "My parents made it the constant  refrain of my upbringing. I "
-         "cherish their ideal as my own and with an equal fervor. I view my "
-         "college degree more as having equipped me with the tools to pursue "
-         "self-education than as having prepared me for any specific job, "
-         "and I have made the broadening of my education my daily task since "
-         "I've graduated.")],
+         ("This idea has its roots in the very bedrock of my personal "
+          "identity. My parents made it the constant  refrain of my "
+          "upbringing. I cherish their ideal as my own and with an equal"
+          " fervor. I view my college degree more as having equipped me"
+          " with the tools to pursue self-education than as having prepared"
+          " me for any specific job, and I have made the broadening of my"
+          " education my daily task since I've graduated.")],
         ["The Value of the Liberal Arts",
-        ("When I selected Classical Civilizations as my major in college, I "
-         "made a decision to invest in a broad education that emphasized "
-         "thinking. I made the investment knowing full well what the Liberal "
-         "Arts offer a dedicated student: a wide-ranging ability to solve "
-         "problems, excellence in written and verbal communication, and, most "
-         "importantly, the ability to learn. I made that choice because I "
-         "truly believe in the value of the Liberal Arts in making strong, "
-         "capable citizens, thinkers, and workers.")],
+         ("When I selected Classical Civilizations as my major in college, I "
+          "made a decision to invest in a broad education that emphasized "
+          "thinking. I made the investment knowing full well what the Liberal "
+          "Arts offer a dedicated student: a wide-ranging ability to solve "
+          "problems, excellence in written and verbal communication, and, most"
+          " importantly, the ability to learn. I made that choice because I "
+          "truly believe in the value of the Liberal Arts in making strong, "
+          "capable citizens, thinkers, and workers.")],
         ["Honesty and Accountability",
-        ("I view honesty and accountability as the foundation of good "
-        "relationships, both personal and professional. Without honest "
-        "communication, there can be no effective collaboration, which is so "
-        "key in our ever-increasingly interconnected world. Without "
-        "accountability there can be no constructive efforts to deal with "
-        "mistakes. I try to cultivate these characteristics in myself, and I "
-        "also look for them in others when I am forming relationships.")],
+         ("I view honesty and accountability as the foundation of good "
+          "relationships, both personal and professional. Without honest "
+          "communication, there can be no effective collaboration, which is so"
+          " key in our ever-increasingly interconnected world. Without "
+          "accountability there can be no constructive efforts to deal with "
+          "mistakes. I try to cultivate these characteristics in myself, and I"
+          " also look for them in others when I am forming relationships.")],
         ["Open-Mindedness",
-        ("I consider some flexibility in ideas to be another fundamental "
-         "component of cooperation. Keeping an open mind fosters creativity "
-         "in problem solving. Moreover, it helps disarm the personal "
-         "attachment to ideas which is so often at the root of personal "
-         "conflict. It is all too easy to mistake criticism of an idea for "
-         "a personal attack, and open-mindedness helps prevent such "
-         "misunderstandings.")],
+         ("I consider some flexibility in ideas to be another fundamental "
+          "component of cooperation. Keeping an open mind fosters creativity "
+          "in problem solving. Moreover, it helps disarm the personal "
+          "attachment to ideas which is so often at the root of personal "
+          "conflict. It is all too easy to mistake criticism of an idea for "
+          "a personal attack, and open-mindedness helps prevent such "
+          "misunderstandings.")],
         ["Cooperation and Proactive Engagement",
-        ("Cooperation is at the heart of any successful effort. We are "
-         "capable of achieving much more when we work together effectively "
-         "than we can as individuals. By proactive engagement, I mean mindful, "
-         "continual engagement with coworkers to address any issues that might "
-         "reduce the effectiveness of collaboration. I might liken proactive "
-         "engagement to cleaning a house. If the cleaning is done regularly, "
-         "it is a task which requires some attention, but is not "
-         "overwhelming. But if the cleaning is neglected for a long period, "
-         "it becomes a substantial, potentially very stressful task.")]
+         ("Cooperation is at the heart of any successful effort. We are "
+          "capable of achieving much more when we work together effectively "
+          "than we can as individuals. By proactive engagement, I mean "
+          "mindful, continual engagement with coworkers to address any issues "
+          "that might reduce the effectiveness of collaboration. I might liken"
+          " proactive engagement to cleaning a house. If the cleaning is done"
+          " regularly, it is a task which requires some attention, but is not "
+          "overwhelming. But if the cleaning is neglected for a long period, "
+          "it becomes a substantial, potentially very stressful task.")]
     ]
 
     for ideal in ideals:
