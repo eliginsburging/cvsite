@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
             name='Course',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course_title', models.CharField(max_length=50)),
+                ('course_title', models.CharField(max_length=100)),
                 ('grade', models.CharField(max_length=10)),
                 ('description', models.TextField()),
             ],
@@ -76,8 +76,8 @@ class Migration(migrations.Migration):
             name='Language',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('language', models.CharField(max_length=20)),
-                ('proficiency', models.CharField(max_length=20, null=True)),
+                ('language', models.CharField(max_length=50)),
+                ('proficiency', models.CharField(max_length=50, null=True)),
                 ('current', models.BooleanField()),
             ],
         ),
@@ -93,8 +93,8 @@ class Migration(migrations.Migration):
             name='Position',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=40)),
-                ('employer', models.CharField(max_length=40)),
+                ('title', models.CharField(max_length=150)),
+                ('employer', models.CharField(max_length=150)),
                 ('start_date', models.DateField()),
                 ('end_date', models.DateField(null=True)),
             ],
@@ -112,7 +112,7 @@ class Migration(migrations.Migration):
             name='Project',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('project_name', models.CharField(max_length=50)),
+                ('project_name', models.CharField(max_length=100)),
                 ('project_description', models.TextField()),
                 ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='resume.Position')),
             ],

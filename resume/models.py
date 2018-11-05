@@ -33,7 +33,7 @@ class Semester(models.Model):
 class Course(models.Model):
 
     semester = models.ForeignKey('Semester', on_delete=models.CASCADE)
-    course_title = models.CharField(max_length=50)
+    course_title = models.CharField(max_length=100)
     grade = models.CharField(max_length=10)
     description = models.TextField()
 
@@ -59,8 +59,8 @@ class APCourse(models.Model):
 
 class Language(models.Model):
 
-    language = models.CharField(max_length=20)
-    proficiency = models.CharField(max_length=20, null=True)
+    language = models.CharField(max_length=50)
+    proficiency = models.CharField(max_length=50, null=True)
     current = models.BooleanField()
 
 
@@ -84,8 +84,8 @@ class SkillDetail(models.Model):
 
 class Position(models.Model):
 
-    title = models.CharField(max_length=40)
-    employer = models.CharField(max_length=40)
+    title = models.CharField(max_length=150)
+    employer = models.CharField(max_length=150)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
 
@@ -122,7 +122,7 @@ class DutyTag(models.Model):
 class Project(models.Model):
 
     job = models.ForeignKey("Position", on_delete=models.CASCADE)
-    project_name = models.CharField(max_length=50)
+    project_name = models.CharField(max_length=100)
     project_description = models.TextField()
 
 
