@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<p>{{ welcome_text }}</p>
+{% for quote in quotes %}
+  <ul>
+    <li>{{ quote.author }}</li>
+    <ul>
+      <li>{{ quote.author_desc }}</li>
+      <li>{{ quote.quotation_text }}</li>
+    </ul>
+  </ul>
+{% endfor %}
+
+{% endblock %}

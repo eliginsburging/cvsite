@@ -147,3 +147,12 @@ class Ideal(models.Model):
 
     ideal_title = models.CharField(max_length=40)
     ideal_description = models.TextField()
+
+
+class BlogPost(models.Model):
+
+    post_title = models.CharField(max_length=500)
+    post_date = models.DateField(auto_now_add=True)
+    post_content = models.TextField()  # insert photo slots by adding && between text
+    post_pictures = models.TextField()  # this will be a comma separated list of
+    # references to files on the server
