@@ -1,16 +1,25 @@
 {% extends "base_generic.html" %}
-
+{% block extrahead %}
+  {% load static %}
+  <script src="{% static 'resume/homepage.js' %}"></script>
+{% endblock %}
 {% block content %}
 
 <p>{{ welcome_text }}</p>
-{% for quote in quotes %}
-  <ul>
-    <li>{{ quote.author }}</li>
-    <ul>
-      <li>{{ quote.author_desc }}</li>
-      <li>{{ quote.quotation_text }}</li>
-    </ul>
-  </ul>
-{% endfor %}
+
+
+<div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="authorDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Select a Thinker
+</button>
+<div class="dropdown-menu" aria-labelledby="authorDropDown">
+  {% for quote_item in quote_list %}
+  <a class="dropdown-item" v-on:click="get_quote('{{quote_item.author}}')" id="author{{ quote_item.pk }}">{{ quote_item.author }}</a>
+  {% endfor %}
+</div>
+</div>
+<div class="">
+  <p>[[ quote ]]</p>
+</div>
 
 {% endblock %}
