@@ -1,25 +1,63 @@
 {% extends "base_generic.html" %}
 {% block extrahead %}
-  {% load static %}
-  <script src="{% static 'resume/homepage.js' %}"></script>
+
 {% endblock %}
 {% block content %}
+<div class="container">
+  <div id="home">
+    <div class="row">
+      <div class="col-md-4">
+        <br>
+        <p>{{ welcome_text }}</p>
+      </div>
+      <div class="col-md-4">
+        <br>
+        <p>put carousel here</p>
+      </div>
+      <div class="col-md-4">
+        <br>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="authorDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a Thinker
+          </button>
+          <div class="dropdown-menu" aria-labelledby="authorDropDown">
+            {% for quote_item in quote_list %}
+            <a class="dropdown-item" v-on:click="get_quote('{{quote_item.author}}')" id="author{{ quote_item.pk }}">{{ quote_item.author }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="">
+          <p>[[ quote ]]</p>
+          <p>[[ quote_author ]]</p>
+          <p>[[ qauthor_desc ]]</p>
+        </div>
 
-<p>{{ welcome_text }}</p>
+      </div>
+    </div>
+  </div>
+  <div id="education">
+    <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  <div id="employment">
+    <br>
+    <p>employment here</p>
+  </div>
+  <div id="aboutme">
+    <br>
+    <p>aboutme</p>
+  </div>
+  <div id="photography">
+    <br>
+    <p>Photos</p>
+  </div>
+  <div id="blog">
+    <br>
+    <p>Blog</p>
+  </div>
+
+</div> <!--/container-->
 
 
-<div class="dropdown">
-<button class="btn btn-secondary dropdown-toggle" type="button" id="authorDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Select a Thinker
-</button>
-<div class="dropdown-menu" aria-labelledby="authorDropDown">
-  {% for quote_item in quote_list %}
-  <a class="dropdown-item" v-on:click="get_quote('{{quote_item.author}}')" id="author{{ quote_item.pk }}">{{ quote_item.author }}</a>
-  {% endfor %}
-</div>
-</div>
-<div class="">
-  <p>[[ quote ]]</p>
-</div>
 
 {% endblock %}

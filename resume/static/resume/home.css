@@ -1,0 +1,31 @@
+#header {
+  background-color: black
+}
+
+#athena {
+  float:right
+}
+
+#education {
+  display: none
+}
+
+#employment {
+  display: none
+}
+
+#aboutme {
+  display: none
+}
+
+#photography {
+  display: none
+}
+
+#blog {
+  display: none
+}
+
+.inactive {
+  color:blue !important;
+}
