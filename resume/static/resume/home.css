@@ -1,9 +1,38 @@
-#header {
-  background-color: black
+
+/* The contents of this file are stored alphabetically
+by type (class, element, id) and then by name */
+
+.deanslist {
+  color:blue;
+}
+
+.inactive {
+  color:blue !important;
+}
+
+.nav-link:hover {
+  cursor:pointer;
+}
+
+.title {
+  text-align: center;
+  color: white;
+}
+
+#aboutme {
+  display: none
+}
+
+#annotated-transcript {
+  display: none
 }
 
 #athena {
-  float:right
+  text-align: right;
+}
+
+#blog {
+  display: none
 }
 
 #education {
@@ -14,18 +43,10 @@
   display: none
 }
 
-#aboutme {
-  display: none
+#headerbackground {
+  background-color: black
 }
 
 #photography {
   display: none
-}
-
-#blog {
-  display: none
-}
-
-.inactive {
-  color:blue !important;
 }

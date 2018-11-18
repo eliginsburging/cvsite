@@ -9,7 +9,10 @@ var vm = new Vue({
     //===============================
     quote: "An educated man should know everything about something and something about everything.",
     quote_author: "C.V. Wedgwood",
-    qauthor_desc: "English historian, author of 'The Thirty Years War,' one of the best-written histories I have ever read"
+    qauthor_desc: "English historian, author of 'The Thirty Years War,' one of the best-written histories I have ever read",
+    sems: [],
+    target_sem: '',
+    courses: []
   },
   methods: {
     //QUOTE methods
@@ -36,6 +39,25 @@ var vm = new Vue({
           $('#tab'+i).removeClass("inactive");
         }
       }
+    },
+    get_sems: function () {
+      axios.get('semester-list/')
+      .then(function (response) {
+        vm.sems = response.data;
+      });
+    },
+    get_courses: function (semester_url) {
+      vm.courses = []
+      vm.target_sem = semester_url
+      axios.get(semester_url)
+      .then(function (response) {
+        for (course_num in response.data.course_set) {
+          axios.get(response.data.course_set[course_num])
+          .then(function (response) {
+            vm.courses.push(response.data)
+          })
+        }
+      })
     }
   }
 });

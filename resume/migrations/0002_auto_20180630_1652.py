@@ -168,7 +168,7 @@ def load_data(apps, schema_editor):
           "tales (the \"Epic Cycle\") that had been performed orally for many "
           "hundreds of years before they were written down.")],
         ["Spring 2012",
-         "HIST 3600",
+         "HIST 3600 - The Renaissance",
          "A",
          ("An interdisciplinary examination of the Renaissance taught by a "
           "team of three professors from the Art History, History, and "

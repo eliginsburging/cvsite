@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Quotation
+from .models import Quotation, Semester, Course
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import QuotationSerializer
+from .serializers import QuotationSerializer, SemesterSerializer, CourseSerializer
 
 # Create your views here.
 
@@ -32,5 +32,42 @@ def quote_detail(request, author):
         quote = Quotation.objects.get(author=author)
     except Quotation.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    serializer = QuotationSerializer(quote)
+    serializer = QuotationSerializer(quote, context={"request": request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def semester_detail(request, pk):
+    """
+    retrieve semester by pk
+    """
+    try:
+        sem = Semester.objects.get(pk=pk)
+    except Semester.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = SemesterSerializer(sem, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def semester_list(request):
+    """
+    retrieve all semseters
+    """
+    sem_set = Semester.objects.all()
+    serializer = SemesterSerializer(sem_set, many=True,
+                                    context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def course_detail(request, pk):
+    """
+    retrieve course by pk
+    """
+    try:
+        course = Course.objects.get(pk=pk)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = CourseSerializer(course, context={'request': request})
     return Response(serializer.data)

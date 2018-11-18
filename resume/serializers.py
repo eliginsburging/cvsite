@@ -1,8 +1,45 @@
 from rest_framework import serializers
-from .models import Quotation
+from .models import Quotation, Semester, Course
 
 
-class QuotationSerializer(serializers.ModelSerializer):
+class QuotationSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializes quotations; note change to default view name and lookup field
+    """
     class Meta:
         model = Quotation
-        fields = ('id', 'author', 'author_desc', 'quotation_text')
+        fields = ('id',
+                  'url',
+                  'author',
+                  'author_desc',
+                  'quotation_text')
+        extra_kwargs = {
+            'url': {'view_name': 'quote_api_author',
+                    'lookup_field': 'author'}
+        }
+
+
+class SemesterSerializer(serializers.HyperlinkedModelSerializer):
+    course_set = serializers.HyperlinkedRelatedField(many=True,
+                                                     read_only=True,
+                                                     view_name='course-detail')
+
+    class Meta:
+        model = Semester
+        fields = ('id',
+                  'url',
+                  'time_period',
+                  'gpa',
+                  'deans_list',
+                  'course_set')
+
+
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('id',
+                  'url',
+                  'semester',
+                  'course_title',
+                  'grade',
+                  'description')
