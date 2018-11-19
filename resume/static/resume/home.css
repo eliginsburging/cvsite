@@ -18,6 +18,10 @@ by type (class, element, id) and then by name */
   cursor:pointer;
 }
 
+.pointer {
+  cursor:pointer;
+}
+
 .title {
   text-align: center;
   color: white;
@@ -53,4 +57,12 @@ by type (class, element, id) and then by name */
 
 #photography {
   display: none
+}
+
+#projects {
+  display: none
+}
+
+#volunteer {
+  display: none;
 }

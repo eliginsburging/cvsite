@@ -7,6 +7,13 @@ from datetime import date
 
 def load_data(apps, schema_editor):
     Quotations = [
+        ["Ada Lovelace",
+         "English mathematician and writer, the first programmer",
+         ("I am more determined than ever in my future plans; and I have "
+          "quite made up my mind that nothing must be suffered to interfere "
+          "with them. I intend to make such arrangements in town as will "
+          "secure me a couple hours daily (with very few exceptions) for "
+          "my studies.")],
         ["C.V. Wedgwood",
          ("""English historian, author of "The Thirty Years War," """
           "one of the best-written histories I have ever read"),
@@ -86,13 +93,7 @@ def load_data(apps, schema_editor):
          ("It's the inspired student that continues to learn on their own. "
           "That's what separates the real achievers in the world from those "
           "who pedal along, finishing assignments.")],
-        ["Ada Lovelace",
-         "English mathematician and writer, the first programmer",
-         ("I am more determined than ever in my future plans; and I have "
-          "quite made up my mind that nothing must be suffered to interfere "
-          "with them. I intend to make such arrangements in town as will "
-          "secure me a couple hours daily (with very few exceptions) for "
-          "my studies.")],
+
     ]
 
     for quotation in Quotations:

@@ -1,4 +1,4 @@
-var tablist = ['#home', '#education', '#employment', '#aboutme', '#photography', '#blog']
+var tablist = ['#home', '#education', '#employment', '#volunteer', '#projects', '#aboutme', '#photography', '#blog']
 
 var vm = new Vue({
   el: '#app',

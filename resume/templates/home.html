@@ -9,7 +9,14 @@
     <div class="row">
       <div class="col-md-3">
         <br>
-        <p>{{ welcome_text }}</p>
+        <div class="card">
+          <div class="card-header">
+            Welcome
+          </div>
+          <div class="card-body">
+            <p>{{ welcome_text }}</p>
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <br>
@@ -37,20 +44,27 @@
       </div>
       <div class="col-md-3">
         <br>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="authorDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select a Thinker
-          </button>
-          <div class="dropdown-menu" aria-labelledby="authorDropDown">
-            {% for quote_item in quote_list %}
-            <a class="dropdown-item" v-on:click="get_quote('{{quote_item.author}}')" id="author{{ quote_item.pk }}">{{ quote_item.author }}</a>
-            {% endfor %}
+        <div class="card text-right">
+          <div class="card-header">
+            Wise Words
           </div>
-        </div>
-        <div class="">
-          <p>[[ quote ]]</p>
-          <p>[[ quote_author ]]</p>
-          <p>[[ qauthor_desc ]]</p>
+          <div class="card-body">
+
+            <h5 class="card-title">[[ quote_author ]]</h5>
+            <h6 class="card-subtitle mb-2 text-muted">[[ qauthor_desc ]]</h6>
+            <p class="card-text">[[ quote ]]</p>
+            <br>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="authorDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select a Thinker
+              </button>
+              <div class="dropdown-menu" aria-labelledby="authorDropDown">
+                {% for quote_item in quote_list %}
+                <a class="dropdown-item" v-on:click="get_quote('{{quote_item.author}}')" id="author{{ quote_item.pk }}">{{ quote_item.author }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -58,26 +72,39 @@
   </div>
   <div id="education">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-md-6">
         <br>
         <img src="" alt="Make a graph using ipynb">
+      </div>
+      <div class="col-md-6">
+        <br>
         <a v-if="show_transcript" v-on:click="hide_transcript()" class="btn btn-primary">Hide annotated transcript</a>
         <a v-else v-on:click="get_sems()" class='btn btn-primary'>View annotated transcript</a>
+        <br>
+        <br>
         <div v-if="show_transcript" class="annotated-transcript">
           <div v-for="sem in sems" class="semester">
-            <ul>
-              <h4><a v-on:click="get_courses(sem.url, sem.id)"><span v-bind:class="{deanslist: sem.deans_list}">[[ sem.time_period ]]</span> - GPA: [[ sem.gpa ]]</a></h4>
-              <div class="courselist">
+            <div class="card">
+              <div class="card-header pointer">
+                <a v-on:click="get_courses(sem.url, sem.id)">
+                  <span v-bind:class="{deanslist: sem.deans_list}">
+                    [[ sem.time_period ]]
+                  </span>
+                   - GPA: [[ sem.gpa ]]
+                 </a>
+              </div>
+              <div class="card-body">
                   <div v-bind:id="'sem'+ sem.id" v-if="sem.url == target_sem">
                     <div v-for="course in courses">
-                      <h5 v-on:click="toggle_course('#course'+ course.id)">[[ course.course_title ]] - [[ course.grade ]]</h5>
+                      <h5 class="pointer" v-on:click="toggle_course('#course'+ course.id)">[[ course.course_title ]] - [[ course.grade ]]</h5>
                       <div v-bind:id="'course' + course.id"  class="hide">
                         [[ course.description ]]
                       </div>
                     </div>
                   </div>
               </div>
-            </ul>
+
+            </div>
           </div>
         </div>
       </div>
@@ -86,6 +113,14 @@
   <div id="employment">
     <br>
     <p>employment here</p>
+  </div>
+  <div id="volunteer">
+    <br>
+    <p>volunteer experience</p>
+  </div>
+  <div id="projects">
+    <br>
+    <p>projects</p>
   </div>
   <div id="aboutme">
     <br>
