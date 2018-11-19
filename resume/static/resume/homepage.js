@@ -11,6 +11,7 @@ var vm = new Vue({
     quote_author: "C.V. Wedgwood",
     qauthor_desc: "English historian, author of 'The Thirty Years War,' one of the best-written histories I have ever read",
     sems: [],
+    show_transcript: false,
     target_sem: '',
     courses: []
   },
@@ -41,12 +42,21 @@ var vm = new Vue({
       }
     },
     get_sems: function () {
+      vm.show_transcript = true;
       axios.get('semester-list/')
       .then(function (response) {
         vm.sems = response.data;
       });
     },
-    get_courses: function (semester_url) {
+    hide_transcript: function () {
+      vm.show_transcript = false;
+    },
+    toggle_course: function (course_name) {
+      console.log(course_name)
+      $(course_name).toggle()
+    },
+    get_courses: function (semester_url, sem_id) {
+      $('#sem' + sem_id).toggle()
       vm.courses = []
       vm.target_sem = semester_url
       axios.get(semester_url)

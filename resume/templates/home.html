@@ -61,15 +61,19 @@
       <div class="col-xs-12">
         <br>
         <img src="" alt="Make a graph using ipynb">
-        <a v-on:click="get_sems()" class='btn btn-primary'>View annotated transcript</a>
-        <div class="annotated-transcript">
+        <a v-if="show_transcript" v-on:click="hide_transcript()" class="btn btn-primary">Hide annotated transcript</a>
+        <a v-else v-on:click="get_sems()" class='btn btn-primary'>View annotated transcript</a>
+        <div v-if="show_transcript" class="annotated-transcript">
           <div v-for="sem in sems" class="semester">
             <ul>
-              <h4><a v-on:click="get_courses(sem.url)"><span v-bind:class="{deanslist: sem.deans_list}">[[ sem.time_period ]]</span> - GPA: [[ sem.gpa ]]</a></h4>
+              <h4><a v-on:click="get_courses(sem.url, sem.id)"><span v-bind:class="{deanslist: sem.deans_list}">[[ sem.time_period ]]</span> - GPA: [[ sem.gpa ]]</a></h4>
               <div class="courselist">
-                  <div v-if="sem.url == target_sem">
-                    <div v-for="course in courses" class="course">
-                      [[ course ]]
+                  <div v-bind:id="'sem'+ sem.id" v-if="sem.url == target_sem">
+                    <div v-for="course in courses">
+                      <h5 v-on:click="toggle_course('#course'+ course.id)">[[ course.course_title ]] - [[ course.grade ]]</h5>
+                      <div v-bind:id="'course' + course.id"  class="hide">
+                        [[ course.description ]]
+                      </div>
                     </div>
                   </div>
               </div>

@@ -2,3 +2,5 @@ cvweb/settings_secret.py
 db.sqlite3
 __pycache__/
 *.pyc
+*.png
+*.jpg

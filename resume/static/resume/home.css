@@ -6,6 +6,10 @@ by type (class, element, id) and then by name */
   color:blue;
 }
 
+.hide {
+  display:none;
+}
+
 .inactive {
   color:blue !important;
 }
