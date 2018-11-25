@@ -3,7 +3,9 @@ from .models import (Quotation,
                      Semester,
                      Course,
                      AcademicAward,
-                     APCourse)
+                     APCourse,
+                     Language,
+                     LanguageDetail)
 
 
 class QuotationSerializer(serializers.HyperlinkedModelSerializer):
@@ -66,3 +68,23 @@ class APCourseSerializer(serializers.HyperlinkedModelSerializer):
                   'url',
                   'course',
                   'score')
+
+
+class LanguageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Language
+        fields = ('id',
+                  'url',
+                  'language',
+                  'proficiency',
+                  'current',
+                  'languagedetail_set')
+
+
+class LanguageDetailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = LanguageDetail
+        fields = ('id',
+                  'url',
+                  'language',
+                  'detail')

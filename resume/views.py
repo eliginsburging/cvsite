@@ -3,7 +3,9 @@ from .models import (Quotation,
                      Semester,
                      Course,
                      AcademicAward,
-                     APCourse)
+                     APCourse,
+                     Language,
+                     LanguageDetail,)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,7 +13,9 @@ from .serializers import (QuotationSerializer,
                           SemesterSerializer,
                           CourseSerializer,
                           AcademicAwardSerializer,
-                          APCourseSerializer)
+                          APCourseSerializer,
+                          LanguageSerializer,
+                          LanguageDetailSerializer,)
 
 # Create your views here.
 
@@ -126,6 +130,52 @@ def apcourse_list(request):
     """
     apcourse_set = APCourse.objects.all()
     serializer = APCourseSerializer(apcourse_set,
-                                        many=True,
-                                        context={'request': request})
+                                    many=True,
+                                    context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def language_detail(request, pk):
+    """
+    retrieve a language by pk
+    """
+    try:
+        language = Language.objects.get(pk=pk)
+    except Language.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = LanguageSerializer(language, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def language_list(request, iscurrent="all"):
+    """
+    retrieve list of languages
+    """
+    if iscurrent == "all":
+        language_set = Language.objects.all()
+    elif iscurrent == "current":
+        language_set = Language.objects.filter(current='True')
+    elif iscurrent == "past":
+        language_set = Language.objects.filter(current='False')
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = LanguageSerializer(language_set,
+                                    many=True,
+                                    context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def languagedetail_detail(request, pk):
+    """
+    retrieve language detail by pk
+    """
+    try:
+        language_det = LanguageDetail.objects.get(pk=pk)
+    except LanguageDetail.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = LanguageDetailSerializer(language_det,
+                                          context={'request': request})
     return Response(serializer.data)

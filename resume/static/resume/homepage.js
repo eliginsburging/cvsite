@@ -16,6 +16,10 @@ var vm = new Vue({
     courses: [],
     awards: [],
     apcourses: [],
+    current_lang: [],
+    past_lang: [],
+    lang_details: [],
+    target_lang: '',
   },
   methods: {
     //QUOTE methods
@@ -43,9 +47,11 @@ var vm = new Vue({
           $('#tab'+i).removeClass("inactive");
         }
       }
-      if (id == "#education") {
+      if (id == "#education" && this.awards.length == 0) {
         this.get_awards();
         this.get_apcourses();
+        this.get_currentlang();
+        this.get_pastlang();
       }
     },
     get_sems: function () {
@@ -90,6 +96,39 @@ var vm = new Vue({
         for (apcourse_num in response.data) {
           vm.apcourses.push(response.data[apcourse_num])
         }
+      })
+    },
+    get_currentlang: function () {
+      vm.current_lang = []
+      axios.get('language-list/current')
+      .then(function (response) {
+        for (num in response.data) {
+          vm.current_lang.push(response.data[num])
+        }
+      })
+    },
+    get_pastlang: function () {
+      vm.past_lang = []
+      axios.get('language-list/past')
+      .then(function (response) {
+        for (num in response.data) {
+          vm.past_lang.push(response.data[num])
+        }
+      })
+    },
+    get_langdetails: function (target_lang, lang_id) {
+      vm.target_lang = target_lang
+      vm.lang_details = []
+      axios.get('language/'+lang_id)
+      .then(function (response) {
+        for (det in response.data.languagedetail_set) {
+          axios.get(response.data.languagedetail_set[det])
+          .then(function (response) {
+            vm.lang_details.push(response.data.detail)
+          })
+        }
+        $(target_lang).toggle()
+
       })
     }
   }

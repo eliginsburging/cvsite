@@ -11,4 +11,8 @@ urlpatterns = [
     path('award-list', views.award_list, name='academicaward-list'),
     path('apcourse/<pk>', views.apcourse_detail, name='apcourse-detail'),
     path('apcourse-list', views.apcourse_list, name='apcourse-list'),
+    path('language/<pk>', views.language_detail, name='language-detail'),
+    path('language-list/<iscurrent>', views.language_list, name='language-list'),
+    path('language-det/<pk>', views.languagedetail_detail,
+         name='languagedetail-detail'),
 ]

@@ -7,7 +7,7 @@
 <div class="container">
   <div id="home">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-lg-3 col-md-4">
         <br>
         <div class="card text-white bg-dark">
           <div class="card-header">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-6 col-md-4">
         <br>
         <div id="carouselControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -42,7 +42,7 @@
           </a>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-lg-3 col-md-4">
         <br>
         <div class="card text-right text-white bg-dark">
           <div class="card-header">
@@ -72,8 +72,13 @@
   </div>
   <div id="education">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-sm-12">
         <br>
+        <h3>Education</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <div class="card text-white bg-dark">
           <div class="card-header">
             <h3>Bachelor of Arts from the University of Minnesota, Twin Cities</h3>
@@ -143,8 +148,13 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-12">
+        <hr>
+        <h3>Academic Awards</h3>
+      </div>
+    </div>
+    <div class="row">
       <div v-for="award in awards" class="col-lg-4">
-        <br>
         <div class="card text-white bg-dark">
           <img class="card-img-top" v-if="award.img" v-bind:src="'/static/resume/' + award.img" alt="">
           <div class="card-header">
@@ -171,8 +181,54 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        some content here
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <h3>Current Languages</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="lang in current_lang" class="col-md-6">
+        <div class="card bg-dark text-white pointer" v-bind:id="'lang'+lang.id" v-on:click="get_langdetails('#lang'+lang.id+'body',lang.id)">
+          <div class="card-header">
+            [[ lang.language ]]
+          </div>
+          <div class="card-body">
+            [[ lang.proficiency]]
+            <div class="hide" v-if="'#lang'+lang.id+'body' == target_lang" v-bind:id="'lang'+lang.id+'body'">
+              <ul>
+                <li v-for="detail in lang_details">[[ detail ]]</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <br>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Prior Languages</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="plang in past_lang" class="col-md-6">
+        <div class="card bg-dark text-white pointer" v-bind:id="'lang'+plang.id" v-on:click="get_langdetails('#lang'+plang.id+'body', plang.id)">
+          <div class="card-header">
+            [[ plang.language ]]
+          </div>
+          <div class="card-body">
+            [[ plang.proficiency ]]
+            <div class="hide" v-if="'#lang'+plang.id+'body' == target_lang" v-bind:id="'lang'+plang.id+'body'">
+              <ul>
+                <li v-for="detail in lang_details">[[ detail ]]</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br>
       </div>
     </div>
   </div>
