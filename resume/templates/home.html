@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-3">
         <br>
-        <div class="card">
+        <div class="card text-white bg-dark">
           <div class="card-header">
             Welcome
           </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="col-md-3">
         <br>
-        <div class="card text-right">
+        <div class="card text-right text-white bg-dark">
           <div class="card-header">
             Wise Words
           </div>
@@ -74,39 +74,105 @@
     <div class="row">
       <div class="col-md-6">
         <br>
-        <img src="" alt="Make a graph using ipynb">
+        <div class="card text-white bg-dark">
+          <div class="card-header">
+            <h3>Bachelor of Arts from the University of Minnesota, Twin Cities</h3>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush list-group-special">
+              <li class="list-group-item list-group-item-dark">Dates Attended: 09/2008 - 05/2012</li>
+              <li class="list-group-item list-group-item-dark">Major: Classical Civilizations</li>
+              <li class="list-group-item list-group-item-dark">Minor: Russian Language</li>
+              <li class="list-group-item list-group-item-dark">GPA: 3.85</li>
+              <li class="list-group-item list-group-item-dark">GPA in Major: 3.96</li>
+            </ul>
+            <br>
+            <a v-if="show_transcript" v-on:click="hide_transcript()" class="btn btn-primary">Hide annotated transcript</a>
+            <a v-else v-on:click="get_sems()" class='btn btn-primary'>View annotated transcript</a>
+
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <br>
-        <a v-if="show_transcript" v-on:click="hide_transcript()" class="btn btn-primary">Hide annotated transcript</a>
-        <a v-else v-on:click="get_sems()" class='btn btn-primary'>View annotated transcript</a>
-        <br>
-        <br>
+        <img src="{% static 'resume/graph.png' %}" id="gpagraph" alt="">
         <div v-if="show_transcript" class="annotated-transcript">
-          <div v-for="sem in sems" class="semester">
-            <div class="card">
-              <div class="card-header pointer">
-                <a v-on:click="get_courses(sem.url, sem.id)">
-                  <span v-bind:class="{deanslist: sem.deans_list}">
-                    [[ sem.time_period ]]
-                  </span>
-                   - GPA: [[ sem.gpa ]]
-                 </a>
-              </div>
-              <div class="card-body">
-                  <div v-bind:id="'sem'+ sem.id" v-if="sem.url == target_sem">
-                    <div v-for="course in courses">
-                      <h5 class="pointer" v-on:click="toggle_course('#course'+ course.id)">[[ course.course_title ]] - [[ course.grade ]]</h5>
-                      <div v-bind:id="'course' + course.id"  class="hide">
-                        [[ course.description ]]
-                      </div>
-                    </div>
-                  </div>
-              </div>
+          <div class="accordion" id='transcriptAccordion'>
+            <div class="text-white bg-dark text-center p-2">Semesters for which I made the deans list are rendered in blue text. Click a semester to expand it. Click courses within each semester to read more about them.</div>
+            <div v-for="sem in sems" class="semester">
+              <div class="card text-white bg-dark">
+                <div class="card-header pointer" v-bind:id="'sem'+sem.id+'header'">
+                  <a v-on:click="get_courses(sem.url)" data-toggle="collapse" v-bind:data-target="'#sem'+sem.id+'body'" aria-expanded="true" v-bind:aria-controls="'sem'+sem.id+'body'">
+                    <span v-bind:class="{deanslist: sem.deans_list}">
+                      [[ sem.time_period ]]
+                    </span>
+                     - GPA: [[ sem.gpa ]]
+                   </a>
+                </div>
+                <div v-bind:id="'sem'+sem.id+'body'" class="collapse" v-bind:aria-labelledby="'sem'+sem.id+'header'" data-parent="#transcriptAccordion">
+                  <div class="card-body">
+                      <div v-bind:id="'sem'+ sem.id" v-if="sem.url == target_sem">
+                        <div v-for="course in courses">
+                          <table class="table table-sm">
+                            <thead class="thead-dark">
+                              <tr class="pointer" v-on:click="toggle_course('#course'+ course.id)">
+                                <th scope="col">[[ course.course_title ]]</th>
+                                <th scope="col">[[ course.grade ]]</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-bind:id="'course' + course.id"  class="hide">
+                                <td colspan=2>[[ course.description ]]</td>
+                              </tr>
+                            </tbody>
 
+
+                          </table>
+
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+
+              </div>
             </div>
           </div>
+
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="award in awards" class="col-lg-4">
+        <br>
+        <div class="card text-white bg-dark">
+          <img class="card-img-top" v-if="award.img" v-bind:src="'/static/resume/' + award.img" alt="">
+          <div class="card-header">
+            [[ award.award_name ]]
+          </div>
+          <div class="card-body">
+            <div v-if="award.award_name == 'AP Scholar with Distinction'" class="">
+              <table class="table table-sm">
+                <thead class="thead-dark">
+                  <tr>
+                    <th class="center">Course</th>
+                    <th class="center">AP Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="apcourse in apcourses">
+                    <td>[[ apcourse.course ]]</td>
+                    <td>[[ apcourse.score ]]</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            [[ award.award_description ]]
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        some content here
       </div>
     </div>
   </div>

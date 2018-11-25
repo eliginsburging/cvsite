@@ -13,7 +13,9 @@ var vm = new Vue({
     sems: [],
     show_transcript: false,
     target_sem: '',
-    courses: []
+    courses: [],
+    awards: [],
+    apcourses: [],
   },
   methods: {
     //QUOTE methods
@@ -29,6 +31,7 @@ var vm = new Vue({
     },
     show_tab: function (id) {
       $(id).show();
+      console.log(id)
       for (i = 0; i < tablist.length; i++) {
         if (tablist[i] != id) {
           $(tablist[i]).hide();
@@ -39,6 +42,10 @@ var vm = new Vue({
           $('#tab'+i).addClass("active");
           $('#tab'+i).removeClass("inactive");
         }
+      }
+      if (id == "#education") {
+        this.get_awards();
+        this.get_apcourses();
       }
     },
     get_sems: function () {
@@ -52,11 +59,9 @@ var vm = new Vue({
       vm.show_transcript = false;
     },
     toggle_course: function (course_name) {
-      console.log(course_name)
       $(course_name).toggle()
     },
-    get_courses: function (semester_url, sem_id) {
-      $('#sem' + sem_id).toggle()
+    get_courses: function (semester_url) {
       vm.courses = []
       vm.target_sem = semester_url
       axios.get(semester_url)
@@ -66,6 +71,24 @@ var vm = new Vue({
           .then(function (response) {
             vm.courses.push(response.data)
           })
+        }
+      })
+    },
+    get_awards: function () {
+      vm.awards = []
+      axios.get('award-list')
+      .then(function (response) {
+        for (award_num in response.data) {
+          vm.awards.push(response.data[award_num])
+        }
+      })
+    },
+    get_apcourses: function () {
+      vm.apcourses = []
+      axios.get('apcourse-list')
+      .then(function (response) {
+        for (apcourse_num in response.data) {
+          vm.apcourses.push(response.data[apcourse_num])
         }
       })
     }

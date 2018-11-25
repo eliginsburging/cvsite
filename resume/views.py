@@ -1,9 +1,17 @@
 from django.shortcuts import render
-from .models import Quotation, Semester, Course
+from .models import (Quotation,
+                     Semester,
+                     Course,
+                     AcademicAward,
+                     APCourse)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import QuotationSerializer, SemesterSerializer, CourseSerializer
+from .serializers import (QuotationSerializer,
+                          SemesterSerializer,
+                          CourseSerializer,
+                          AcademicAwardSerializer,
+                          APCourseSerializer)
 
 # Create your views here.
 
@@ -70,4 +78,54 @@ def course_detail(request, pk):
     except Course.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = CourseSerializer(course, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def award_detail(request, pk):
+    """
+    retrieve award by pk
+    """
+    try:
+        award = AcademicAward.objects.get(pk=pk)
+    except AcademicAward.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = AcademicAwardSerializer(award, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def award_list(request):
+    """
+    retrieve list of awards
+    """
+    award_set = AcademicAward.objects.all()
+    serializer = AcademicAwardSerializer(award_set,
+                                         many=True,
+                                         context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def apcourse_detail(request, pk):
+    """
+    retrieve apcourse by pk
+    """
+    try:
+        apcourse = APCourse.objects.get(pk=pk)
+    except APCourse.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = APCourseSerializer(apcourse, context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def apcourse_list(request):
+    """
+    retrieve list of apcourses
+    """
+    apcourse_set = APCourse.objects.all()
+    serializer = APCourseSerializer(apcourse_set,
+                                        many=True,
+                                        context={'request': request})
     return Response(serializer.data)

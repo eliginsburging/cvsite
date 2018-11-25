@@ -1,5 +1,9 @@
 from rest_framework import serializers
-from .models import Quotation, Semester, Course
+from .models import (Quotation,
+                     Semester,
+                     Course,
+                     AcademicAward,
+                     APCourse)
 
 
 class QuotationSerializer(serializers.HyperlinkedModelSerializer):
@@ -43,3 +47,22 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
                   'course_title',
                   'grade',
                   'description')
+
+
+class AcademicAwardSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = AcademicAward
+        fields = ('id',
+                  'url',
+                  'award_name',
+                  'award_description',
+                  'img',)
+
+
+class APCourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = APCourse
+        fields = ('id',
+                  'url',
+                  'course',
+                  'score')

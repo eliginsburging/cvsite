@@ -548,7 +548,7 @@ def load_data(apps, schema_editor):
          ("In high school I took six AP classes, scoring a four or higher on"
           "every exam I took. Below you see my AP Transcript. My scores "
           "qualified me for the \"AP Scholar with Distinction\" designation,"
-          "which is awarded to anyone who scores a 3 or higher on five"
+          "which is awarded to anyone who scores a 3 or higher on five "
           "exams and averages a 3.5 or higher on all exams taken.")],
         ["Greek Student of the Year 2010 -2011",
          ("In recognition of my devotion to the study of Attic Greek, the "

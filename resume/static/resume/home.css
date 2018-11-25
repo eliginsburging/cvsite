@@ -2,9 +2,19 @@
 /* The contents of this file are stored alphabetically
 by type (class, element, id) and then by name */
 
+.center {
+  text-align:center;
+}
+
+.dark {
+  background-color: black;
+}
+
 .deanslist {
   color:blue;
+  font-weight: bold;
 }
+
 
 .hide {
   display:none;
@@ -12,6 +22,18 @@ by type (class, element, id) and then by name */
 
 .inactive {
   color:blue !important;
+}
+
+.lighttext {
+  color:#bbbbbb
+}
+
+.list-group-special {
+  border-radius: 2px
+}
+
+.max100 {
+  max-width: 100%
 }
 
 .nav-link:hover {
@@ -49,6 +71,10 @@ by type (class, element, id) and then by name */
 
 #employment {
   display: none
+}
+
+#gpagraph {
+  max-width: 100%
 }
 
 #headerbackground {
