@@ -5,7 +5,15 @@ from .models import (Quotation,
                      AcademicAward,
                      APCourse,
                      Language,
-                     LanguageDetail,)
+                     LanguageDetail,
+                     Skill,
+                     SkillDetail,
+                     Position,
+                     PriorTitle,
+                     Duty,
+                     DutyTag,
+                     Project,
+                     ProjectTag,)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,7 +23,15 @@ from .serializers import (QuotationSerializer,
                           AcademicAwardSerializer,
                           APCourseSerializer,
                           LanguageSerializer,
-                          LanguageDetailSerializer,)
+                          LanguageDetailSerializer,
+                          SkillSerializer,
+                          SkillDetailSerializer,
+                          PositionSerializer,
+                          PriorTitleSerializer,
+                          DutySerializer,
+                          DutyTagSerializer,
+                          ProjectSerializer,
+                          ProjectTagSerializer,)
 
 # Create your views here.
 
@@ -178,4 +194,140 @@ def languagedetail_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = LanguageDetailSerializer(language_det,
                                           context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def skill_detail(request, pk):
+    """
+    retrieve skill by pk
+    """
+    try:
+        skill = Skill.objects.get(pk=pk)
+    except Skill.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = SkillSerializer(skill,
+                                 context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def skill_list(request):
+    """
+    retrieve list of all skills
+    """
+    skill_set = Skill.objects.all()
+    serializer = SkillSerializer(skill_set,
+                                 many=True,
+                                 context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def skilldetail_detail(request, pk):
+    """
+    retrieve skill detail by pk
+    """
+    try:
+        skill_det = SkillDetail.objects.get(pk=pk)
+    except SkillDetail.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = SkillDetailSerializer(skill_det,
+                                       context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def position_detail(request, pk):
+    """
+    retrieve position by pk
+    """
+    try:
+        position_det = Position.objects.get(pk=pk)
+    except Position.DoesNotExist:
+        return
+    serializer = PositionSerializer(position_det,
+                                    context={"request": request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def position_list(request):
+    """
+    retrieve list of all positions
+    """
+    position_set = Position.objects.all()
+    serializzer = PositionSerializer(position_set,
+                                     many=True,
+                                     context={'request': request})
+    return Response(serializzer.data)
+
+
+@api_view(['GET'])
+def priortitle_detail(request, pk):
+    """
+    retrieve prior title by pk
+    """
+    try:
+        priortitle_det = PriorTitle.objects.get(pk=pk)
+    except PriorTitle.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = PriorTitleSerializer(priortitle_det,
+                                      context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def duty_detail(request, pk):
+    """
+    retrieve duty by pk
+    """
+    try:
+        duty_det = Duty.objects.get(pk=pk)
+    except Duty.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = DutySerializer(duty_det,
+                                context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def dutytag_detail(request, pk):
+    """
+    retrieve duty tag by pk
+    """
+    try:
+        dutytag_det = DutyTag.objects.get(pk=pk)
+    except DutyTag.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = DutyTagSerializer(dutytag_det,
+                                   context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def project_detail(request, pk):
+    """
+    retrieve project by pk
+    """
+    try:
+        project_det = Project.objects.get(pk=pk)
+    except Project.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProjectSerializer(project_det,
+                                   context={'request': request})
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def projecttag_detail(request, pk):
+    """
+    retrieve project tag by pk
+    """
+    try:
+        projecttag_det = ProjectTag.objects.get(pk=pk)
+    except ProjectTag.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProjectTagSerializer(projecttag_det,
+                                      context={'request': request})
     return Response(serializer.data)

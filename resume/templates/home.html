@@ -5,6 +5,13 @@
 {% block content %}
 {% load static %}
 <div class="container">
+  <!--
+  ===============================================
+  ===============================================
+  HOME PAGE CONTENT
+  ===============================================
+  ===============================================
+  -->
   <div id="home">
     <div class="row">
       <div class="col-lg-3 col-md-4">
@@ -71,6 +78,36 @@
     </div>
   </div>
   <div id="education">
+    <!--
+    ===============================================
+    ===============================================
+    EDUCATION PAGE CONTENT
+    ===============================================
+    ===============================================
+    -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+        <h3>Skills</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="skill in skills" class="col-sm-6">
+        <br>
+        <div class="card bg-dark text-white">
+          <div class="card-header">
+            [[ skill[0].skill ]]
+          </div>
+          <div class="card-body">
+            <ul>
+              <li v-for="detail in skill[1]">[[ detail ]]</li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <br>
@@ -219,9 +256,9 @@
           <div class="card-header">
             [[ plang.language ]]
           </div>
-          <div class="card-body">
+          <div class="card-body hide" v-if="'#lang'+plang.id+'body' == target_lang" v-bind:id="'lang'+plang.id+'body'">
             [[ plang.proficiency ]]
-            <div class="hide" v-if="'#lang'+plang.id+'body' == target_lang" v-bind:id="'lang'+plang.id+'body'">
+            <div class="">
               <ul>
                 <li v-for="detail in lang_details">[[ detail ]]</li>
               </ul>

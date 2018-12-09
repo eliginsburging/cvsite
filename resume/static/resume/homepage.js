@@ -20,6 +20,7 @@ var vm = new Vue({
     past_lang: [],
     lang_details: [],
     target_lang: '',
+    skills: [],
   },
   methods: {
     //QUOTE methods
@@ -52,7 +53,23 @@ var vm = new Vue({
         this.get_apcourses();
         this.get_currentlang();
         this.get_pastlang();
+        this.get_skills();
       }
+    },
+    get_skills: async function () {
+      const skill_list = await axios.get('skill-list/')
+      skill_list.data.forEach(function(skillObj){
+        var temp_list = []
+        var temp_sublist = []
+        console.log(skillObj)
+        temp_list.push(skillObj)
+        skillObj.skilldetail_set.forEach(async function(detURL) {
+          const detail = await axios.get(detURL)
+          temp_sublist.push(detail.data.skill_detail)
+        })
+        temp_list.push(temp_sublist)
+        vm.skills.push(temp_list)
+      })
     },
     get_sems: function () {
       vm.show_transcript = true;

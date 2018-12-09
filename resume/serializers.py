@@ -5,7 +5,15 @@ from .models import (Quotation,
                      AcademicAward,
                      APCourse,
                      Language,
-                     LanguageDetail)
+                     LanguageDetail,
+                     Skill,
+                     SkillDetail,
+                     Position,
+                     PriorTitle,
+                     Duty,
+                     DutyTag,
+                     Project,
+                     ProjectTag,)
 
 
 class QuotationSerializer(serializers.HyperlinkedModelSerializer):
@@ -88,3 +96,86 @@ class LanguageDetailSerializer(serializers.HyperlinkedModelSerializer):
                   'url',
                   'language',
                   'detail')
+
+
+class SkillSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Skill
+        fields = ('id',
+                  'url',
+                  'skill',
+                  'skill_type',
+                  'skilldetail_set')
+
+
+class SkillDetailSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SkillDetail
+        fields = ('id',
+                  'url',
+                  'skill',
+                  'skill_detail')
+
+
+class PositionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Position
+        fields = ('id',
+                  'url',
+                  'title',
+                  'employer',
+                  'start_date',
+                  'end_date',
+                  'priortitle_set',
+                  'duty_set',
+                  'project_set',)
+
+
+class PriorTitleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PriorTitle
+        fields = ('id',
+                  'url',
+                  'current_position',
+                  'prior_title',
+                  'promotion_date')
+
+
+class DutySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Duty
+        fields = ('id',
+                  'url',
+                  'job',
+                  'job_duty',
+                  'prior',
+                  'dutytag_set')
+
+
+class DutyTagSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = DutyTag
+        fields = ('id',
+                  'url',
+                  'duty',
+                  'duty_tag')
+
+
+class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id',
+                  'url',
+                  'job',
+                  'project_name',
+                  'project_description',
+                  'projecttag_set')
+
+
+class ProjectTagSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ProjectTag
+        fields = ('id',
+                  'url',
+                  'project',
+                  'project_tag')

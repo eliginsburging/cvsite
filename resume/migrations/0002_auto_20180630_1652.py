@@ -658,9 +658,11 @@ def load_data(apps, schema_editor):
         ["Linux", ("Familiarity with multiple Linux distributions, including "
                    "Debian, Debian derivatives (Linux Mint and Ubuntu), "
                    "OpenSuse, and Arch derivatives (Manjaro, Antergos)")],
-        ["Web Design", "Django"],
+        ["Web Design", "Intermediate Django"],
         ["Web Design", "Bootstrap"],
-        ["Web Design", "Javascript, including familiarity with Vue.JS"],
+        ["Web Design", ("Intermediate Javascript, including familiarity with "
+                        "Vue.JS")],
+        ["web Design", "Django Rest Framework"],
         ["Computer Science", ("Knowledge of the essential abstract tools "
                               "used in all programming languages")],
         ["Computer Science", "Intermediate Python"]
