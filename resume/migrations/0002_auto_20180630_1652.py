@@ -796,7 +796,43 @@ def load_data(apps, schema_editor):
         ["Staff Tutor",
          """I wrote and edited letters of inquiry to grantmakers""",
          False,
-         ["writing"]]
+         ["writing"]],
+        ["Recess Supervisor",
+         "I trained and supervised recess coaches",
+         False,
+         ["Supervisory"]],
+        ["Recess Supervisor",
+         ("I led children in games and exercises and educated them about "
+          "the importance of nutrition, sleep, and exercise"),
+         False,
+         ["Teaching"]],
+        ["Tutor",
+         "I tutored third and sixth graders in readinga and mathematics",
+         False,
+         ["Teaching"]],
+        ["Barista",
+         "I trained and supervised new employees",
+         False,
+         ["Supervisory"]],
+        ["Barista",
+         ("I took inventory, made beverages, opened and closed the cafe, "
+          "and made regular bank deposits on behalf of my employers"),
+         False],
+        ["Lead Worker",
+         ("I trained new student libarary assistants, opened and closed "
+          "the libary, compiled training documentation into an internal "
+          "training website, worked at the borrowing priveleges and fines "
+          "desk, and performed various maintenance activities in the stacks"),
+         False],
+        ["Pathology Research Assistant",
+         ("I performed standard pathology research techniques such as "
+          "miniprep for bacterial cloning and Western blotting"),
+         False],
+        ["Pathology Research Assistant",
+         ("I carried out my own research project, which involved in-vitro"
+          "calcium imaging of epithelial cells in the presence of "
+          "various cytokines"),
+         False]
     ]
 
     Projects = [
@@ -837,7 +873,7 @@ def load_data(apps, schema_editor):
           "expert testimonial letters, answered client questions, managed "
           "expectations, and prepared the O-1 petitions, including lengthy "
           "(around 30 page) company letters of support. Both petitions were "
-          "approved without issuance of requests for additional evidence.")]
+          "approved without issuance of requests for additional evidence.")],
     ]
 
     for job in Jobs:

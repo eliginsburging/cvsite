@@ -21,6 +21,7 @@ var vm = new Vue({
     lang_details: [],
     target_lang: '',
     skills: [],
+    positions: [],
   },
   methods: {
     //QUOTE methods
@@ -36,7 +37,6 @@ var vm = new Vue({
     },
     show_tab: function (id) {
       $(id).show();
-      console.log(id)
       for (i = 0; i < tablist.length; i++) {
         if (tablist[i] != id) {
           $(tablist[i]).hide();
@@ -57,18 +57,23 @@ var vm = new Vue({
       }
     },
     get_skills: async function () {
+      // build a list of nested JSON objects
+      // the "skill_obj" key of each json object will be associated with the
+      // JSON for a single skill (as retrieved from the api).
+      // the "skill_list" key of each json object will be associated with a list
+      // of details crresponding to that skill
+
       const skill_list = await axios.get('skill-list/')
       skill_list.data.forEach(function(skillObj){
-        var temp_list = []
+        var temp_dict = {}
         var temp_sublist = []
-        console.log(skillObj)
-        temp_list.push(skillObj)
+        temp_dict.skill_obj = skillObj // push whole json response as first item in list
         skillObj.skilldetail_set.forEach(async function(detURL) {
           const detail = await axios.get(detURL)
           temp_sublist.push(detail.data.skill_detail)
         })
-        temp_list.push(temp_sublist)
-        vm.skills.push(temp_list)
+        temp_dict.skill_list = temp_sublist // second item in temp_list is a list with eacg skill detail
+        vm.skills.push(temp_dict)
       })
     },
     get_sems: function () {
@@ -147,6 +152,76 @@ var vm = new Vue({
         $(target_lang).toggle()
 
       })
+    },
+    get_positions: async function() {
+      // build a list of json objects
+      // each json object will have the following key value pairs:
+      // 'position_obj' --> full json response for an api call on a position
+      // 'prior_titles' --> list of prior title json objects associated with the positions
+      // 'duties' --> a list of json objects, each as follows:
+      //     'duty' --> text of a single duty
+      //     'tags' --> list of tags associated with the duty
+      // 'projects' --> a list of json objects, each as follows:
+      //     'project_name' --> name of a single project
+      //     'project_desc' --> text of a single project
+      //     'tags' --> a list of tags associated with the project
+      var master_list = []
+      const pos_list = await axios.get('position-list')
+      //first, loop through each json object in our position list
+      pos_list.data.forEach(function(posObj){
+        var projlist_jsonObj = {}
+        // this is the larger json object described above,
+        // which will eventually be pushed into the master list
+        projlist_jsonObj['position_obj'] = posObj
+        var title_list = []
+        // build a list of prior title objects
+        // (rather than the urls returned in our first axios call above)
+        posObj.priortitle_set.forEach(async function(pturl){
+          const titleObj = await axios.get(pturl)
+          title_list.push(titleObj.data)
+        })
+        projlist_jsonObj['prior_titles'] = title_list
+        // build a list of duty objects (rather than the
+        // urls returned by our initial axios call above)
+        var duties_list = []
+        posObj.duty_set.forEach(async function(dutyurl){
+          var duty_dict = {}
+          const dutyObj = await axios.get(dutyurl)
+          duty_dict['duty'] = dutyObj.data.job_duty
+          // text of a single duty
+          var dutytag_list = []
+          // create a list of tags associated with that text
+          dutyObj.data.dutytag_set.forEach(async function(dtagurl){
+            const dutytagObj = await axios.get(dtagurl)
+            console.log(dutytagObj.data.duty_tag)
+            dutytag_list.push(dutytagObj.data.duty_tag)
+            console.log(dutytag_list)
+          })
+          console.log(dutytag_list)
+          duty_dict['tags'] = dutytag_list
+          duties_list.push(duty_dict)
+        })
+        projlist_jsonObj['duties'] = duties_list
+        // build a list of projects (rather than the urls returned by
+        // the initial axios call)
+        var projects_list = []
+        posObj.project_set.forEach(async function(projurl){
+          var proj_dict = {}
+          const projObj = await axios.get(projurl)
+          proj_dict['project_name'] = projObj.data.project_name
+          proj_dict['project_desc'] = projObj.data.project_description
+          var projtag_list = []
+          projObj.data.projecttag_set.forEach(async function(ptagurl){
+            const ptagObj = await axios.get(ptagurl)
+            projtag_list.push(ptagObj.data.project_tag)
+          })
+          proj_dict['tags'] = projtag_list
+          projects_list.push(proj_dict)
+        })
+        projlist_jsonObj['projects'] = projects_list
+        master_list.push(projlist_jsonObj)
+      })
+      vm.positions = master_list
     }
   }
 });

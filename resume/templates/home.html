@@ -96,11 +96,11 @@
         <br>
         <div class="card bg-dark text-white">
           <div class="card-header">
-            [[ skill[0].skill ]]
+            [[ skill.skill_obj.skill ]]
           </div>
           <div class="card-body">
             <ul>
-              <li v-for="detail in skill[1]">[[ detail ]]</li>
+              <li v-for="detail in skill.skill_list">[[ detail ]]</li>
             </ul>
           </div>
         </div>
